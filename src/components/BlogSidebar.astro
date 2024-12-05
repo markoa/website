@@ -1,0 +1,69 @@
+---
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faSignal } from "@fortawesome/free-solid-svg-icons";
+import { faBluesky, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+
+const icons = {
+  signalIcon: icon(faSignal).html,
+  xTwitterIcon: icon(faXTwitter).html,
+  blueskyIcon: icon(faBluesky).html,
+};
+---
+
+<aside
+  id="blog-sidebar"
+  class="fixed top-0 left-0 h-screen w-64 p-8 lg:w-48 lg:top-16 lg:left-8 bg-white dark:bg-dark-base -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out z-40"
+>
+  <nav class="space-y-4 mt-16 lg:mt-0">
+    <a
+      href="/signals"
+      class="flex items-center text-sm text-gray-400 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-50"
+    >
+      <span class="inline-block w-4 h-4 mr-2">
+        <span class="[&>svg]:w-4 [&>svg]:h-4">
+          <Fragment set:html={icons.signalIcon} />
+        </span>
+      </span>
+      signals</a
+    >
+    <div>
+      <a
+        href="/"
+        class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+      >
+        by Marko Anastasov
+      </a>
+    </div>
+
+    <nav class="mt-8 space-y-2">
+      <a
+        href="/signals/rss.xml"
+        class="block text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+      >
+        RSS
+      </a>
+      <a
+        href="https://x.com/markoa"
+        rel="me"
+        class="block text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+      >
+        <span class="inline-block w-3 h-3 mr-1">
+          <span class="[&>svg]:w-3 [&>svg]:h-3">
+            <Fragment set:html={icons.xTwitterIcon} />
+          </span>
+        </span>
+      </a>
+      <a
+        href="https://bsky.app/profile/markoanastasov.bsky.social"
+        rel="me"
+        class="flex items-center text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+      >
+        <span class="inline-block w-3 h-3 mr-1">
+          <span class="[&>svg]:w-3 [&>svg]:h-3">
+            <Fragment set:html={icons.blueskyIcon} />
+          </span>
+        </span>
+      </a>
+    </nav>
+  </nav>
+</aside>
