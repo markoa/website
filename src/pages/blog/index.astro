@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogSidebar from "../../components/BlogSidebar.astro";
+import MenuButton from "../../components/MenuButton.astro";
 
 const posts = await getCollection("blog", ({ data }) => {
   return import.meta.env.PROD ? !data.draft : true;
@@ -26,10 +27,13 @@ const formatDate = (timestamp) => {
 
 <Layout title="Blog">
   <div class="flex dark:bg-dark-base min-h-screen">
+    <MenuButton />
     <BlogSidebar />
 
     <!-- Main content -->
-    <main class="ml-48 max-w-[680px] p-8">
+    <main
+      class="w-full px-8 pt-24 pb-16 lg:py-16 lg:pl-48 lg:pr-8 max-w-[680px] lg:ml-48"
+    >
       <div class="space-y-16">
         {
           sortedPosts.map((post) => (

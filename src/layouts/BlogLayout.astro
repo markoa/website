@@ -1,6 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import BlogSidebar from "../components/BlogSidebar.astro";
+import MenuButton from "../components/MenuButton.astro";
 
 const { frontmatter } = Astro.props;
 
@@ -19,10 +20,13 @@ const formatDate = (timestamp) => {
 
 <Layout title={frontmatter.title}>
   <div class="flex dark:bg-dark-base min-h-screen">
+    <MenuButton />
     <BlogSidebar />
 
     <!-- Main content -->
-    <main class="ml-48 max-w-[680px] p-8">
+    <main
+      class="w-full px-8 pt-24 pb-16 lg:py-16 lg:pl-48 lg:pr-8 max-w-[680px] lg:ml-48"
+    >
       <article class="space-y-4">
         {
           frontmatter.type === "photo" && frontmatter.image && (
@@ -58,12 +62,11 @@ const formatDate = (timestamp) => {
           <slot />
         </div>
 
-        <a
-          href={`/blog/${frontmatter.slug}`}
-          class="block text-[10px] text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 font-sans"
+        <span
+          class="block text-[10px] text-gray-400 dark:text-gray-500 font-sans"
         >
           {formatDate(frontmatter.pubDate)}
-        </a>
+        </span>
       </article>
     </main>
   </div>
