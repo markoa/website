@@ -12,6 +12,14 @@ const sortedPosts = posts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+// Render all posts' content
+const renderedPosts = await Promise.all(
+  sortedPosts.map(async (post) => {
+    const { Content } = await post.render();
+    return { ...post, Content };
+  })
+);
+
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
   return date
@@ -36,7 +44,7 @@ const formatDate = (timestamp) => {
     >
       <div class="space-y-16">
         {
-          sortedPosts.map((post) => (
+          renderedPosts.map((post) => (
             <article class="space-y-4">
               {post.data.type === "photo" && post.data.image && (
                 <img src={post.data.image} alt="Post image" class="w-full" />
@@ -70,11 +78,9 @@ const formatDate = (timestamp) => {
                 </h2>
               )}
 
-              {post.data.description && (
-                <div class="font-serif text-gray-800 dark:text-gray-300 leading-relaxed">
-                  {post.data.description}
-                </div>
-              )}
+              <div class="prose prose-gray prose-quoteless font-serif dark:prose-invert">
+                <post.Content />
+              </div>
 
               <a
                 href={`/blog/${post.slug}`}
