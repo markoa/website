@@ -5,7 +5,8 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    pubDate: z.date(),
+    pubDate: z.string()
+      .transform((str) => new Date(str)),
     type: z.enum(['article', 'link', 'photo']),
     url: z.string().optional(), // for link type posts
     image: z.string().optional(), // for photo type posts
@@ -14,5 +15,5 @@ const blog = defineCollection({
 });
 
 export const collections = {
-  'blog': blog,
+  blog: blog,
 };

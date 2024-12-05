@@ -1,59 +1,87 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import BlogSidebar from "../../components/BlogSidebar.astro";
 
-const posts = await getCollection('blog', ({ data }) => {
+const posts = await getCollection("blog", ({ data }) => {
   return import.meta.env.PROD ? !data.draft : true;
 });
 
-// Sort posts by date
-const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp);
+  return date
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    })
+    .toLowerCase();
+};
 ---
 
 <Layout title="Blog">
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8">Blog</h1>
-    
-    <div class="space-y-8">
-      {sortedPosts.map((post) => (
-        <article class="border-b border-gray-200 pb-8">
-          {post.data.type === 'photo' && post.data.image && (
-            <img 
-              src={post.data.image} 
-              alt={post.data.title}
-              class="mb-4 rounded-lg max-h-96 object-cover w-full"
-            />
-          )}
-          <div class="flex items-baseline gap-2 text-sm text-gray-600 mb-2">
-            <time datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-            <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">
-              {post.data.type}
-            </span>
-          </div>
-          
-          <h2 class="text-2xl font-semibold mb-2">
-            {post.data.type === 'link' ? (
-              <a href={post.data.url} class="hover:text-blue-600">
-                {post.data.title} →
+  <div class="flex dark:bg-blog-dark min-h-screen">
+    <BlogSidebar />
+
+    <!-- Main content -->
+    <main class="ml-48 max-w-[680px] p-8">
+      <div class="space-y-16">
+        {
+          sortedPosts.map((post) => (
+            <article class="space-y-4">
+              {post.data.type === "photo" && post.data.image && (
+                <img src={post.data.image} alt="Post image" class="w-full" />
+              )}
+
+              {post.data.type !== "photo" && (
+                <h2 class="font-sans text-xl dark:text-white">
+                  {post.data.type === "link" ? (
+                    <div class="flex items-center gap-2">
+                      <a
+                        href={post.data.url}
+                        class="hover:text-gray-600 dark:hover:text-gray-300"
+                      >
+                        {post.data.title}
+                      </a>
+                      <a
+                        href={`/blog/${post.slug}`}
+                        class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 font-normal text-sm"
+                      >
+                        →
+                      </a>
+                    </div>
+                  ) : (
+                    <a
+                      href={`/blog/${post.slug}`}
+                      class="hover:text-gray-600 dark:hover:text-gray-300"
+                    >
+                      {post.data.title}
+                    </a>
+                  )}
+                </h2>
+              )}
+
+              {post.data.description && (
+                <div class="font-serif text-gray-800 dark:text-gray-300 leading-relaxed">
+                  {post.data.description}
+                </div>
+              )}
+
+              <a
+                href={`/blog/${post.slug}`}
+                class="block text-[10px] text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 font-sans"
+              >
+                {formatDate(post.data.pubDate)}
               </a>
-            ) : (
-              <a href={`/blog/${post.slug}`} class="hover:text-blue-600">
-                {post.data.title}
-              </a>
-            )}
-          </h2>
-          
-          {post.data.description && (
-            <p class="text-gray-600">{post.data.description}</p>
-          )}
-        </article>
-      ))}
-    </div>
-  </main>
+            </article>
+          ))
+        }
+      </div>
+    </main>
+  </div>
 </Layout>

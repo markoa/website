@@ -1,40 +1,63 @@
 ---
-import Layout from './Layout.astro';
+import Layout from "./Layout.astro";
+import BlogSidebar from "../components/BlogSidebar.astro";
 
 const { frontmatter } = Astro.props;
+
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp);
+  return date
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    })
+    .toLowerCase();
+};
 ---
 
 <Layout title={frontmatter.title}>
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <article class="prose lg:prose-xl mx-auto">
-      {frontmatter.type === 'photo' && frontmatter.image && (
-        <img 
-          src={frontmatter.image} 
-          alt={frontmatter.title}
-          class="w-full rounded-lg mb-8"
-        />
-      )}
-      
-      <div class="flex items-baseline gap-2 text-sm text-gray-600 mb-4">
-        <time datetime={frontmatter.pubDate.toISOString()}>
-          {frontmatter.pubDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </time>
-        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">
-          {frontmatter.type}
-        </span>
-      </div>
+  <div class="flex dark:bg-blog-dark min-h-screen">
+    <BlogSidebar />
 
-      <h1>{frontmatter.title}</h1>
-      
-      {frontmatter.description && (
-        <p class="text-xl text-gray-600 mt-2">{frontmatter.description}</p>
-      )}
+    <!-- Main content -->
+    <main class="ml-48 max-w-[680px] p-8">
+      <article class="space-y-4">
+        {
+          frontmatter.type === "photo" && frontmatter.image && (
+            <img src={frontmatter.image} alt="Post image" class="w-full" />
+          )
+        }
 
-      <slot />
-    </article>
-  </main>
+        {
+          frontmatter.type !== "photo" && (
+            <h1 class="font-sans text-xl dark:text-white">
+              {frontmatter.type === "link" ? (
+                <div class="flex items-center gap-2">
+                  <a href={frontmatter.url} class="hover:text-gray-600 dark:hover:text-gray-300">
+                    {frontmatter.title}
+                  </a>
+                  <span class="text-gray-400 dark:text-gray-500 font-normal text-sm">→</span>
+                </div>
+              ) : (
+                frontmatter.title
+              )}
+            </h1>
+          )
+        }
+
+        <div class="prose prose-gray prose-quoteless font-serif dark:prose-invert">
+          <slot />
+        </div>
+
+        <a
+          href={`/blog/${frontmatter.slug}`}
+          class="block text-[10px] text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 font-sans"
+        >
+          {formatDate(frontmatter.pubDate)}
+        </a>
+      </article>
+    </main>
+  </div>
 </Layout>
