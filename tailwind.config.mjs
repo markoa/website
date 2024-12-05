@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "blog-dark": "#394255",
+        "dark-base": "#454B5A",
       },
     },
   },

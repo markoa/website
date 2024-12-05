@@ -18,7 +18,7 @@ const formatDate = (timestamp) => {
 ---
 
 <Layout title={frontmatter.title}>
-  <div class="flex dark:bg-blog-dark min-h-screen">
+  <div class="flex dark:bg-dark-base min-h-screen">
     <BlogSidebar />
 
     <!-- Main content -->
@@ -35,10 +35,15 @@ const formatDate = (timestamp) => {
             <h1 class="font-sans text-xl dark:text-white">
               {frontmatter.type === "link" ? (
                 <div class="flex items-center gap-2">
-                  <a href={frontmatter.url} class="hover:text-gray-600 dark:hover:text-gray-300">
+                  <a
+                    href={frontmatter.url}
+                    class="hover:text-gray-600 dark:hover:text-gray-300"
+                  >
                     {frontmatter.title}
                   </a>
-                  <span class="text-gray-400 dark:text-gray-500 font-normal text-sm">→</span>
+                  <span class="text-gray-400 dark:text-gray-500 font-normal text-sm">
+                    →
+                  </span>
                 </div>
               ) : (
                 frontmatter.title
@@ -47,7 +52,9 @@ const formatDate = (timestamp) => {
           )
         }
 
-        <div class="prose prose-gray prose-quoteless font-serif dark:prose-invert">
+        <div
+          class="prose prose-gray prose-quoteless font-serif dark:prose-invert"
+        >
           <slot />
         </div>
 
