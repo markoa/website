@@ -1,5 +1,10 @@
 ---
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faSignal } from "@fortawesome/free-solid-svg-icons";
 
+const icons = {
+  signalIcon: icon(faSignal).html,
+};
 ---
 
 <aside
@@ -8,9 +13,15 @@
 >
   <nav class="space-y-4 mt-16 lg:mt-0">
     <a
-      href="/blog"
-      class="block text-sm text-gray-400 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-50"
-      >blog</a
+      href="/signals"
+      class="flex items-center text-sm text-gray-400 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-50"
+    >
+      <span class="inline-block w-4 h-4 mr-2">
+        <span class="[&>svg]:w-4 [&>svg]:h-4">
+          <Fragment set:html={icons.signalIcon} />
+        </span>
+      </span>
+      signals</a
     >
     <div>
       <a
@@ -22,12 +33,6 @@
     </div>
 
     <nav class="mt-8 space-y-2">
-      <a
-        href="/archive"
-        class="block text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-      >
-        Archive
-      </a>
       <a
         href="/rss"
         class="block text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"

@@ -36,7 +36,9 @@ const formatDate = (timestamp) => {
 
         {
           frontmatter.type !== "photo" && (
-            <h1 class="font-sans text-xl dark:text-white">
+            <h1
+              class="text-xl dark:text-white mb-8"
+            >
               {frontmatter.type === "link" ? (
                 <div class="flex items-center gap-2">
                   <a
@@ -45,9 +47,6 @@ const formatDate = (timestamp) => {
                   >
                     {frontmatter.title}
                   </a>
-                  <span class="text-gray-400 dark:text-gray-500 font-normal text-sm">
-                    →
-                  </span>
                 </div>
               ) : (
                 frontmatter.title
@@ -57,14 +56,12 @@ const formatDate = (timestamp) => {
         }
 
         <div
-          class="prose prose-gray prose-quoteless font-serif dark:prose-invert"
+          class="prose prose-gray prose-quoteless dark:prose-invert marker:text-gray-400 dark:marker:text-gray-500 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500"
         >
           <slot />
         </div>
 
-        <span
-          class="block text-[10px] text-gray-300 dark:text-gray-400 font-sans"
-        >
+        <span class="block text-xs text-gray-500 dark:text-gray-400 font-sans">
           {formatDate(frontmatter.pubDate)}
         </span>
       </article>
