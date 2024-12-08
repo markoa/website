@@ -47,6 +47,28 @@ const icons = {
       <ul class="space-y-4">
         <li>
           <a
+            href="/signals"
+            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
+          >
+            <span class="w-4 h-4 mr-2">
+              <Fragment set:html={icons.rss} />
+            </span>
+            Signals: Personal blog
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://blog.operately.com"
+            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
+          >
+            <span class="w-4 h-4 mr-2">
+              <Fragment set:html={icons.rss} />
+            </span>
+            Operately Blog
+          </a>
+        </li>
+        <li>
+          <a
             href="https://x.com/markoa"
             rel="me"
             class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
@@ -55,18 +77,6 @@ const icons = {
               <Fragment set:html={icons.twitter} />
             </span>
             @markoa
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.linkedin.com/in/markoa/"
-            rel="me"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.linkedin} />
-            </span>
-            LinkedIn
           </a>
         </li>
         <li>
@@ -83,6 +93,18 @@ const icons = {
         </li>
         <li>
           <a
+            href="https://www.linkedin.com/in/markoa/"
+            rel="me"
+            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
+          >
+            <span class="w-4 h-4 mr-2">
+              <Fragment set:html={icons.linkedin} />
+            </span>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a
             href="https://github.com/markoa"
             rel="me"
             class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
@@ -91,17 +113,6 @@ const icons = {
               <Fragment set:html={icons.github} />
             </span>
             GitHub
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://blog.operately.com"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.rss} />
-            </span>
-            Operately Blog
           </a>
         </li>
       </ul>

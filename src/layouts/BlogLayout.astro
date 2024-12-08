@@ -1,0 +1,70 @@
+---
+import Layout from "./Layout.astro";
+import BlogSidebar from "../components/BlogSidebar.astro";
+import MenuButton from "../components/MenuButton.astro";
+
+const { frontmatter } = Astro.props;
+
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp);
+  return date
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    })
+    .toLowerCase();
+};
+---
+
+<Layout title={frontmatter.title}>
+  <div class="flex dark:bg-dark-base min-h-screen">
+    <MenuButton />
+    <BlogSidebar />
+
+    <!-- Main content -->
+    <main
+      class="w-full px-8 pt-24 pb-16 lg:py-24 lg:pl-48 lg:pr-8 max-w-[680px] lg:ml-48"
+    >
+      <article class="space-y-4">
+        {
+          frontmatter.type === "photo" && frontmatter.image && (
+            <img src={frontmatter.image} alt="Post image" class="w-full" />
+          )
+        }
+
+        {
+          frontmatter.type !== "photo" && (
+            <h1
+              class="text-xl dark:text-white mb-8"
+            >
+              {frontmatter.type === "link" ? (
+                <div class="flex items-center gap-2">
+                  <a
+                    href={frontmatter.url}
+                    class="hover:text-gray-600 dark:hover:text-gray-300"
+                  >
+                    {frontmatter.title}
+                  </a>
+                </div>
+              ) : (
+                frontmatter.title
+              )}
+            </h1>
+          )
+        }
+
+        <div
+          class="prose prose-gray prose-quoteless dark:prose-invert marker:text-gray-400 dark:marker:text-gray-500 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500"
+        >
+          <slot />
+        </div>
+
+        <span class="block text-xs text-gray-500 dark:text-gray-400 font-sans">
+          {formatDate(frontmatter.pubDate)}
+        </span>
+      </article>
+    </main>
+  </div>
+</Layout>

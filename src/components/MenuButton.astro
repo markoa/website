@@ -1,0 +1,36 @@
+---
+const { class: className } = Astro.props;
+---
+
+<button
+  id="menu-button"
+  class:list={[
+    "lg:hidden fixed top-8 left-8 z-50 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors",
+    className,
+  ]}
+  aria-label="Toggle menu"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-5 h-5 text-gray-600 dark:text-gray-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</button>
+
+<script>
+  const menuButton = document.getElementById("menu-button");
+  const sidebar = document.getElementById("blog-sidebar");
+
+  menuButton?.addEventListener("click", () => {
+    sidebar?.classList.toggle("translate-x-0");
+    sidebar?.classList.toggle("-translate-x-full");
+  });
+</script>
