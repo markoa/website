@@ -1,3 +1,14 @@
+---
+import socialCard from "../assets/social-card.jpeg";
+import socialCardSquare from "../assets/social-card-square.jpeg";
+
+const socialCardUrl = new URL(socialCard.src, Astro.site).toString();
+const socialCardSquareUrl = new URL(
+  socialCardSquare.src,
+  Astro.site
+).toString();
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,6 +36,19 @@
         <meta property="og:description" content={Astro.props.description} />
       )
     }
+    <meta property="og:image" content={socialCardUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@markoa" />
+    <meta name="twitter:title" content={Astro.props.title} />
+    {
+      Astro.props.description && (
+        <meta name="twitter:description" content={Astro.props.description} />
+      )
+    }
+    <meta name="twitter:image" content={socialCardSquareUrl} />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
