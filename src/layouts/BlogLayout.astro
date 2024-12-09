@@ -16,9 +16,21 @@ const formatDate = (timestamp) => {
     })
     .toLowerCase();
 };
+
+const getISODate = (timestamp) => {
+  const date = new Date(timestamp);
+  return date.toISOString();
+};
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
-<Layout title={frontmatter.title}>
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  canonicalURL={canonicalURL}
+  ogType="article"
+>
   <div class="flex dark:bg-dark-base min-h-screen">
     <MenuButton />
     <BlogSidebar />
@@ -36,9 +48,7 @@ const formatDate = (timestamp) => {
 
         {
           frontmatter.type !== "photo" && (
-            <h1
-              class="text-xl dark:text-white mb-8"
-            >
+            <h1 class="text-xl dark:text-white mb-8">
               {frontmatter.type === "link" ? (
                 <div class="flex items-center gap-2">
                   <a
@@ -62,7 +72,9 @@ const formatDate = (timestamp) => {
         </div>
 
         <span class="block text-xs text-gray-500 dark:text-gray-400 font-sans">
-          {formatDate(frontmatter.pubDate)}
+          <time datetime={getISODate(frontmatter.pubDate)}>
+            {formatDate(frontmatter.pubDate)}
+          </time>
         </span>
       </article>
     </main>

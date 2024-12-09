@@ -1,19 +1,68 @@
+---
+import socialCard from "../assets/social-card.jpeg";
+import socialCardSquare from "../assets/social-card-square.jpeg";
+
+const socialCardUrl = new URL(socialCard.src, Astro.site).toString();
+const socialCardSquareUrl = new URL(
+  socialCardSquare.src,
+  Astro.site
+).toString();
+---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
+    {
+      Astro.props.description && (
+        <meta name="description" content={Astro.props.description} />
+      )
+    }
+    {
+      Astro.props.canonicalURL && (
+        <link rel="canonical" href={Astro.props.canonicalURL} />
+      )
+    }
+    <!-- Open Graph -->
+    <meta property="og:type" content={Astro.props.ogType || "website"} />
+    <meta property="og:url" content={Astro.props.canonicalURL} />
+    <meta property="og:title" content={Astro.props.title} />
+    {
+      Astro.props.description && (
+        <meta property="og:description" content={Astro.props.description} />
+      )
+    }
+    <meta property="og:image" content={socialCardUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@markoa" />
+    <meta name="twitter:title" content={Astro.props.title} />
+    {
+      Astro.props.description && (
+        <meta name="twitter:description" content={Astro.props.description} />
+      )
+    }
+    <meta name="twitter:image" content={socialCardSquareUrl} />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+    />
+    <link
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
     />
   </head>
-  <body>
+  <body class="min-h-screen bg-white dark:bg-dark-base">
     <slot />
   </body>
 </html>
