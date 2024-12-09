@@ -9,6 +9,9 @@
     {Astro.props.description && (
       <meta name="description" content={Astro.props.description} />
     )}
+    {Astro.props.canonicalURL && (
+      <link rel="canonical" href={Astro.props.canonicalURL} />
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

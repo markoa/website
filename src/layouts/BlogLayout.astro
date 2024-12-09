@@ -16,9 +16,15 @@ const formatDate = (timestamp) => {
     })
     .toLowerCase();
 };
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.description}>
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  canonicalURL={canonicalURL}
+>
   <div class="flex dark:bg-dark-base min-h-screen">
     <MenuButton />
     <BlogSidebar />
@@ -36,9 +42,7 @@ const formatDate = (timestamp) => {
 
         {
           frontmatter.type !== "photo" && (
-            <h1
-              class="text-xl dark:text-white mb-8"
-            >
+            <h1 class="text-xl dark:text-white mb-8">
               {frontmatter.type === "link" ? (
                 <div class="flex items-center gap-2">
                   <a
