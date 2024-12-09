@@ -6,17 +6,26 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
-    {Astro.props.description && (
-      <meta name="description" content={Astro.props.description} />
-    )}
-    {Astro.props.canonicalURL && (
-      <link rel="canonical" href={Astro.props.canonicalURL} />
-    )}
+    {
+      Astro.props.description && (
+        <meta name="description" content={Astro.props.description} />
+      )
+    }
+    {
+      Astro.props.canonicalURL && (
+        <link rel="canonical" href={Astro.props.canonicalURL} />
+      )
+    }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+    />
+    <link
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
     />
   </head>
   <body class="min-h-screen bg-white dark:bg-dark-base">
