@@ -53,9 +53,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
                 <div class="flex items-center gap-2">
                   <a
                     href={frontmatter.url}
-                    class="hover:text-gray-600 dark:hover:text-gray-300"
+                    class="hover:text-gray-600 dark:hover:text-gray-300 flex items-center gap-2"
                   >
                     {frontmatter.title}
+                    <span>→</span>
                   </a>
                 </div>
               ) : (

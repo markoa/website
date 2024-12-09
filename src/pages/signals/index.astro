@@ -53,20 +53,13 @@ const formatDate = (timestamp) => {
               {post.data.type !== "photo" && (
                 <h2 class="text-xl dark:text-white">
                   {post.data.type === "link" ? (
-                    <div class="flex items-center gap-2">
-                      <a
-                        href={post.data.url}
-                        class="hover:text-gray-600 dark:hover:text-gray-300"
-                      >
-                        {post.data.title}
-                      </a>
-                      <a
-                        href={`/signals/${post.slug}`}
-                        class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 font-normal text-sm"
-                      >
-                        →
-                      </a>
-                    </div>
+                    <a
+                      href={post.data.url}
+                      class="hover:text-gray-600 dark:hover:text-gray-300 flex items-center gap-2"
+                    >
+                      {post.data.title}
+                      <span>→</span>
+                    </a>
                   ) : (
                     <a
                       href={`/signals/${post.slug}`}
