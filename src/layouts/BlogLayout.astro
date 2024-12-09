@@ -17,6 +17,11 @@ const formatDate = (timestamp) => {
     .toLowerCase();
 };
 
+const getISODate = (timestamp) => {
+  const date = new Date(timestamp);
+  return date.toISOString();
+};
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
@@ -66,7 +71,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
         </div>
 
         <span class="block text-xs text-gray-500 dark:text-gray-400 font-sans">
-          {formatDate(frontmatter.pubDate)}
+          <time datetime={getISODate(frontmatter.pubDate)}>
+            {formatDate(frontmatter.pubDate)}
+          </time>
         </span>
       </article>
     </main>
