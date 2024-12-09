@@ -16,6 +16,16 @@
         <link rel="canonical" href={Astro.props.canonicalURL} />
       )
     }
+    <!-- Open Graph -->
+    <meta property="og:type" content={Astro.props.ogType || "website"} />
+    <meta property="og:url" content={Astro.props.canonicalURL} />
+    <meta property="og:title" content={Astro.props.title} />
+    {
+      Astro.props.description && (
+        <meta property="og:description" content={Astro.props.description} />
+      )
+    }
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

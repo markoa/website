@@ -29,6 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
   title={frontmatter.title}
   description={frontmatter.description}
   canonicalURL={canonicalURL}
+  ogType="article"
 >
   <div class="flex dark:bg-dark-base min-h-screen">
     <MenuButton />
