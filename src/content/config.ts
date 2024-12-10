@@ -10,6 +10,8 @@ const signals = defineCollection({
     url: z.string().optional(), // for link type posts
     image: z.string().optional(), // for photo2 type posts
     published: z.boolean().default(false),
+    xPostId: z.string().optional(), // ID of the post on X/Twitter
+    blueskyPostId: z.string().optional(), // ID of the post on Bluesky
   }),
 });
 

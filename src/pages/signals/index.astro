@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogSidebar from "../../components/BlogSidebar.astro";
 import MenuButton from "../../components/MenuButton.astro";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faXTwitter, faBluesky } from "@fortawesome/free-brands-svg-icons";
 
 const posts = await getCollection("signals", ({ data }) => {
   return import.meta.env.PROD ? data.published : true;
@@ -11,6 +13,11 @@ const posts = await getCollection("signals", ({ data }) => {
 const sortedPosts = posts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const icons = {
+  xTwitter: icon(faXTwitter).html[0],
+  bluesky: icon(faBluesky).html[0],
+};
 
 // Render all posts' content
 const renderedPosts = await Promise.all(
@@ -75,12 +82,44 @@ const formatDate = (timestamp) => {
                 <post.Content />
               </div>
 
-              <a
-                href={`/signals/${post.slug}`}
-                class="block text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 font-sans"
-              >
-                {formatDate(post.data.pubDate)}
-              </a>
+              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans">
+                <a href={`/signals/${post.slug}`}>
+                  {formatDate(post.data.pubDate)}
+                </a>
+                <div class="flex items-center gap-3">
+                  {(post.data.xPostId || post.data.blueskyPostId) && (
+                    <span>comment on</span>
+                  )}
+                  {post.data.xPostId && (
+                    <a
+                      href={`https://x.com/markoa/status/${post.data.xPostId}`}
+                      class="hover:text-gray-900 dark:hover:text-gray-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="w-3 h-3">
+                        <span class="[&>svg]:w-3 [&>svg]:h-3">
+                          <Fragment set:html={icons.xTwitter} />
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                  {post.data.blueskyPostId && (
+                    <a
+                      href={`https://bsky.app/profile/markoanastasov.bsky.social/post/${post.data.blueskyPostId}`}
+                      class="hover:text-gray-900 dark:hover:text-gray-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="w-3 h-3">
+                        <span class="[&>svg]:w-3 [&>svg]:h-3">
+                          <Fragment set:html={icons.bluesky} />
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </div>
             </article>
           ))
         }

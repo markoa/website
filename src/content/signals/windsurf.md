@@ -5,6 +5,8 @@ pubDate: 2024-12-09 23:22Z
 type: "link"
 url: "https://codeium.com/windsurf"
 published: true
+xPostId: "1866434945490592167"
+blueskyPostId: "3lcwsj3gmbk2y"
 ---
 
 I haven't hit "subscribe" this quickly in ages. While I've been using Claude and its artifacts as my programming sidekick for months, Windsurf editor takes the AI coding experience to new heights.
