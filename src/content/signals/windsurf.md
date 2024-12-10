@@ -4,6 +4,7 @@ description: "The AI editor that made me instantly subscribe"
 pubDate: 2024-12-09 23:22Z
 type: "link"
 url: "https://codeium.com/windsurf"
+published: true
 ---
 
 I haven't hit "subscribe" this quickly in ages. While I've been using Claude and its artifacts as my programming sidekick for months, Windsurf editor takes the AI coding experience to new heights.
