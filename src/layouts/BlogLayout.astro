@@ -57,15 +57,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
           frontmatter.type !== "photo" && (
             <h1 class="text-xl dark:text-white mb-8">
               {frontmatter.type === "link" ? (
-                <div class="flex items-center gap-2">
-                  <a
-                    href={frontmatter.url}
-                    class="hover:text-gray-600 dark:hover:text-gray-300 flex items-center gap-2"
-                  >
-                    {frontmatter.title}
-                    <span>→</span>
-                  </a>
-                </div>
+                <a
+                  href={frontmatter.url}
+                  class="hover:text-gray-600 dark:hover:text-gray-300"
+                >
+                  {frontmatter.title} →
+                </a>
               ) : (
                 frontmatter.title
               )}

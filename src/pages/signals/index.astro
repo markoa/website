@@ -62,10 +62,9 @@ const formatDate = (timestamp) => {
                   {post.data.type === "link" ? (
                     <a
                       href={post.data.url}
-                      class="hover:text-gray-600 dark:hover:text-gray-300 flex items-center gap-2"
+                      class="hover:text-gray-600 dark:hover:text-gray-300"
                     >
-                      {post.data.title}
-                      <span>→</span>
+                      {post.data.title} →
                     </a>
                   ) : (
                     <a
