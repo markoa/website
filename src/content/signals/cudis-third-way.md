@@ -1,7 +1,7 @@
 ---
 title: "Cudis smart ring"
 description: "The third way for personal data"
-pubDate: 2025-12-11 09:31Z
+pubDate: 2024-12-11 09:31Z
 type: "link"
 url: "https://www.cudis.xyz/"
 published: true
