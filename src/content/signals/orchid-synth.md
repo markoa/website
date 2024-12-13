@@ -1,5 +1,5 @@
 ---
-title: Orchid synth
+title: Orchid Synth
 description: "A chord generating synth"
 pubDate: 2024-12-10 08:22Z
 type: "link"

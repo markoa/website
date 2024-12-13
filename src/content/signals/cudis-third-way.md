@@ -1,5 +1,5 @@
 ---
-title: "Cudis smart ring"
+title: "Cudis Smart Ring"
 description: "The third way for personal data"
 pubDate: 2024-12-11 09:31Z
 type: "link"

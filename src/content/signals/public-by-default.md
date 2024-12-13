@@ -1,5 +1,5 @@
 ---
-title: "Public by default"
+title: "Public By Default"
 description: "Still fascinated by the effects of genuinely building in public."
 pubDate: 2024-12-09 12:26Z
 type: "link"
