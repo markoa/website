@@ -3,13 +3,18 @@ import Layout from "./Layout.astro";
 import BlogSidebar from "../components/BlogSidebar.astro";
 import MenuButton from "../components/MenuButton.astro";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-import { faXTwitter, faBluesky } from "@fortawesome/free-brands-svg-icons";
+import {
+  faXTwitter,
+  faBluesky,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
 const { frontmatter } = Astro.props;
 
 const icons = {
   xTwitter: icon(faXTwitter).html[0],
   bluesky: icon(faBluesky).html[0],
+  linkedin: icon(faLinkedin).html[0],
 };
 
 const formatDate = (timestamp) => {
@@ -76,42 +81,66 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
           <slot />
         </div>
 
-        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans">
+        <div
+          class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans"
+        >
           <time datetime={getISODate(frontmatter.pubDate)}>
             {formatDate(frontmatter.pubDate)}
           </time>
           <div class="flex items-center gap-3">
-            {(frontmatter.xPostId || frontmatter.blueskyPostId) && (
-              <span>comment on</span>
-            )}
-            {frontmatter.xPostId && (
-              <a
-                href={`https://x.com/markoa/status/${frontmatter.xPostId}`}
-                class="hover:text-gray-900 dark:hover:text-gray-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span class="w-3 h-3">
-                  <span class="[&>svg]:w-3 [&>svg]:h-3">
-                    <Fragment set:html={icons.xTwitter} />
+            {
+              (frontmatter.xPostId ||
+                frontmatter.blueskyPostId ||
+                frontmatter.linkedinPostId) && <span>comment on</span>
+            }
+            {
+              frontmatter.xPostId && (
+                <a
+                  href={`https://x.com/markoa/status/${frontmatter.xPostId}`}
+                  class="hover:text-gray-900 dark:hover:text-gray-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="w-3 h-3">
+                    <span class="[&>svg]:w-3 [&>svg]:h-3">
+                      <Fragment set:html={icons.xTwitter} />
+                    </span>
                   </span>
-                </span>
-              </a>
-            )}
-            {frontmatter.blueskyPostId && (
-              <a
-                href={`https://bsky.app/profile/markoanastasov.bsky.social/post/${frontmatter.blueskyPostId}`}
-                class="hover:text-gray-900 dark:hover:text-gray-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span class="w-3 h-3">
-                  <span class="[&>svg]:w-3 [&>svg]:h-3">
-                    <Fragment set:html={icons.bluesky} />
+                </a>
+              )
+            }
+            {
+              frontmatter.blueskyPostId && (
+                <a
+                  href={`https://bsky.app/profile/markoanastasov.bsky.social/post/${frontmatter.blueskyPostId}`}
+                  class="hover:text-gray-900 dark:hover:text-gray-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="w-3 h-3">
+                    <span class="[&>svg]:w-3 [&>svg]:h-3">
+                      <Fragment set:html={icons.bluesky} />
+                    </span>
                   </span>
-                </span>
-              </a>
-            )}
+                </a>
+              )
+            }
+            {
+              frontmatter.linkedinPostId && (
+                <a
+                  href={`https://www.linkedin.com/posts/${frontmatter.linkedinPostId}/`}
+                  class="hover:text-gray-900 dark:hover:text-gray-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="w-3 h-3">
+                    <span class="[&>svg]:w-3 [&>svg]:h-3">
+                      <Fragment set:html={icons.linkedin} />
+                    </span>
+                  </span>
+                </a>
+              )
+            }
           </div>
         </div>
       </article>

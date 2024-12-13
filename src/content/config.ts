@@ -12,6 +12,7 @@ const signals = defineCollection({
     published: z.boolean().default(false),
     xPostId: z.string().optional(), // ID of the post on X/Twitter
     blueskyPostId: z.string().optional(), // ID of the post on Bluesky
+    linkedinPostId: z.string().optional(), // ID of the post on LinkedIn
   }),
 });
 
