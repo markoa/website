@@ -7,4 +7,4 @@ published: true
 url: "https://www.youtube.com/@SemaphoreBackstage"
 ---
 
-Semaphore launched a new YouTube channel called [Semaphore Backstage](https://www.youtube.com/@SemaphoreBackstage) to document the engineering journey building the next-generation CI/CD features. The first video takes you inside a product meeting where the team tackles real challenges in continuous delivery – from multi-region deployments to version queuing. Smash the like button and subscribe!
+Semaphore launched a new YouTube channel called Semaphore Backstage to document the engineering journey building the next-generation CI/CD features. [The first video](https://www.youtube.com/watch?v=O3UKW9WfmdU) takes you inside a product meeting where the team tackles real challenges in continuous delivery – from multi-region deployments to version queuing. Smash the like button and subscribe!
