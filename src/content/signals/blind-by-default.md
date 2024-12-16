@@ -5,6 +5,9 @@ pubDate: 2024-12-16 16:06Z
 type: "link"
 url: "https://blog.sbensu.com/posts/default-blind/"
 published: true
+xPostId: "1868703111671640266"
+blueskyPostId: "3ldgsoswuik2i"
+linkedinPostId: "markoa_why-do-seemingly-obvious-patterns-go-unnoticed-activity-7274470070762811392-3ojL"
 ---
 
 Sebastian Bensusan, writing about how digital work is invisible by default:
