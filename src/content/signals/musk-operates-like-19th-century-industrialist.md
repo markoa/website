@@ -5,6 +5,8 @@ pubDate: 2024-12-18 12:05Z
 type: "link"
 url: "https://www.youtube.com/watch?v=gn9YZP_Zm50"
 published: true
+xPostId: "1869355716953481348"
+blueskyPostId: "3ldldko4n6s2s"
 ---
 
 Marc Andreessen on Chris Williamson's podcast:
