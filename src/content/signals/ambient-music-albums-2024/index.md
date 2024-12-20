@@ -4,6 +4,8 @@ description: "The ambient records that have colored my working hours throughout 
 pubDate: 2024-12-20 12:23Z
 type: "article"
 published: true
+xPostId: "1870085076366577680"
+blueskyPostId: "3ldqffz3q7s2k"
 ---
 
 Ambient music is my workday companion. The albums collected here — ranging from spectral drones to late-night meditative jazz to minimalist classical pieces — have a peculiar effect: they help me carve out a space where focus is sustained and time seems to suspend itself. These are the records that have colored my working hours throughout 2024.
