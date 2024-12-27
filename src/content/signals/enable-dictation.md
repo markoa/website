@@ -4,6 +4,8 @@ description: "macOS dictation can help you write better AI prompts and content b
 pubDate: 2024-12-27 15:49Z
 type: "article"
 published: true
+xPostId: "1872673831263113324"
+blueskyPostId: "3lecechtukc2j"
 ---
 
 You can save yourself hours of typing by talking to your Mac.
