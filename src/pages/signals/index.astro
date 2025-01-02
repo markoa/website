@@ -10,6 +10,7 @@ import {
   faBluesky,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { formatDate } from "../../utils/date";
 
 const posts = await getCollection("signals", ({ data }) => {
   return import.meta.env.PROD ? data.published : true;
@@ -32,18 +33,6 @@ const renderedPosts = await Promise.all(
     return { ...post, Content };
   })
 );
-
-const formatDate = (timestamp) => {
-  const date = new Date(timestamp);
-  return date
-    .toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-    })
-    .toLowerCase();
-};
 ---
 
 <Layout title="Signals">
