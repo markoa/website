@@ -3,12 +3,14 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogSidebar from "../../components/BlogSidebar.astro";
 import MenuButton from "../../components/MenuButton.astro";
+import ImageLightbox from "../../components/ImageLightbox.astro";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import {
   faXTwitter,
   faBluesky,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { formatDate } from "../../utils/date";
 
 const posts = await getCollection("signals", ({ data }) => {
   return import.meta.env.PROD ? data.published : true;
@@ -31,18 +33,6 @@ const renderedPosts = await Promise.all(
     return { ...post, Content };
   })
 );
-
-const formatDate = (timestamp) => {
-  const date = new Date(timestamp);
-  return date
-    .toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-    })
-    .toLowerCase();
-};
 ---
 
 <Layout title="Signals">
@@ -59,7 +49,17 @@ const formatDate = (timestamp) => {
           renderedPosts.map((post) => (
             <article class="space-y-4">
               {post.data.type === "photo" && post.data.image && (
-                <img src={post.data.image} alt="Post image" class="w-full" />
+                <>
+                  <ImageLightbox
+                    image={post.data.image}
+                    alt={post.data.description || "Photo post"}
+                  />
+                  {post.data.description && (
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                      {post.data.description}
+                    </p>
+                  )}
+                </>
               )}
 
               {post.data.type !== "photo" && (

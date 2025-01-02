@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+
+const { image, alt } = Astro.props;
+const id = crypto.randomUUID();
+---
+
+<div class="cursor-pointer" data-lightbox-trigger={id}>
+  <Image
+    src={image}
+    alt={alt}
+    class="w-full rounded-lg shadow-lg mb-4 transition-transform hover:scale-[1.02]"
+  />
+</div>
+
+<dialog
+  id={`lightbox-${id}`}
+  class="fixed inset-0 w-screen h-screen p-8 bg-transparent"
+>
+  <div class="relative w-full h-full flex items-center justify-center">
+    <div
+      class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-zoom-out"
+      data-close
+    ></div>
+    <Image
+      src={image}
+      alt={alt}
+      class="relative z-10 max-h-[90vh] w-auto object-contain cursor-zoom-out"
+      data-close
+    />
+  </div>
+</dialog>
+
+<script define:vars={{ id }}>
+  const lightbox = document.getElementById(`lightbox-${id}`);
+  const trigger = document.querySelector(`[data-lightbox-trigger="${id}"]`);
+  const closeElements = lightbox?.querySelectorAll("[data-close]");
+
+  if (trigger && lightbox && closeElements) {
+    trigger.addEventListener("click", () => {
+      lightbox.showModal();
+    });
+
+    closeElements.forEach(element => {
+      element.addEventListener("click", () => {
+        lightbox.close();
+      });
+    });
+  }
+
+  // Close on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox?.open) {
+      lightbox.close();
+    }
+  });
+</script>
+
+<style>
+  dialog::backdrop {
+    display: none;
+  }
+
+  dialog {
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+  }
+
+  dialog[open] {
+    opacity: 1;
+  }
+
+  dialog > div {
+    transition: transform 0.3s ease-out;
+    transform: scale(0.95);
+  }
+
+  dialog[open] > div {
+    transform: scale(1);
+  }
+</style>
