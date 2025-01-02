@@ -2,6 +2,7 @@
 import Layout from "./Layout.astro";
 import BlogSidebar from "../components/BlogSidebar.astro";
 import MenuButton from "../components/MenuButton.astro";
+import ImageLightbox from "../components/ImageLightbox.astro";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import {
   faXTwitter,
@@ -42,6 +43,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
   description={frontmatter.description}
   canonicalURL={canonicalURL}
   ogType="article"
+  {...frontmatter.type === "photo" && {
+    photo:
+      typeof frontmatter.image === "string"
+        ? frontmatter.image
+        : new URL(frontmatter.image.src, Astro.site).toString(),
+  }}
 >
   <div class="flex dark:bg-dark-base min-h-screen">
     <MenuButton />
@@ -54,7 +61,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
       <article class="space-y-4">
         {
           frontmatter.type === "photo" && frontmatter.image && (
-            <img src={frontmatter.image} alt="Post image" class="w-full" />
+            <>
+              <ImageLightbox
+                image={frontmatter.image}
+                alt={frontmatter.description || "Photo post"}
+              />
+              {frontmatter.description && (
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  {frontmatter.description}
+                </p>
+              )}
+            </>
           )
         }
 

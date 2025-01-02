@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogSidebar from "../../components/BlogSidebar.astro";
 import MenuButton from "../../components/MenuButton.astro";
+import ImageLightbox from "../../components/ImageLightbox.astro";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import {
   faXTwitter,
@@ -59,7 +60,17 @@ const formatDate = (timestamp) => {
           renderedPosts.map((post) => (
             <article class="space-y-4">
               {post.data.type === "photo" && post.data.image && (
-                <img src={post.data.image} alt="Post image" class="w-full" />
+                <>
+                  <ImageLightbox
+                    image={post.data.image}
+                    alt={post.data.description || "Photo post"}
+                  />
+                  {post.data.description && (
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                      {post.data.description}
+                    </p>
+                  )}
+                </>
               )}
 
               {post.data.type !== "photo" && (
