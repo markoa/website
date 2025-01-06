@@ -1,9 +1,11 @@
 ---
 title: "AI Can Build Apps Like Calculators Can Do Math"
-description: "AI Can Build Apps Like Calculators Can Do Math"
+description: "AI and automation make programming more valuable, not less."
 pubDate: 2025-01-06 12:17Z
 type: "article"
 published: true
+xPostId: "1876243092778737749"
+blueskyPostId: "3lf34vkvhrk25"
 ---
 
 [Naval Ravikant on X](https://x.com/naval/status/1875298113403150591):
