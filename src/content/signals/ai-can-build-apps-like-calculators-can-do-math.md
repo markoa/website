@@ -6,6 +6,7 @@ type: "article"
 published: true
 xPostId: "1876243092778737749"
 blueskyPostId: "3lf34vkvhrk25"
+linkedinPostId: "markoa_ai-can-build-apps-like-calculators-can-do-activity-7282803827689336832-RqQE"
 ---
 
 [Naval Ravikant on X](https://x.com/naval/status/1875298113403150591):
