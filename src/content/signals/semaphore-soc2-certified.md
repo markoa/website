@@ -4,6 +4,9 @@ pubDate: 2025-01-24 15:12Z
 type: "link"
 url: "https://semaphoreci.com/blog/semaphore-soc2-type2"
 published: true
+xPostId: "1882811072694071531"
+blueskyPostId: "3lgipddf5vc2b"
+linkedinPostId: "markoa_we-just-got-our-soc-2-type-2-certification-activity-7288577851908329472-brXk"
 ---
 
 We just got our SOC 2 Type 2 certification at Semaphore. This means we've proven our security practices work consistently over time, not just on paper. [Protecting our customers' code and data](https://semaphoreci.com/security) has always been a top priority for us, and now we have the audit to back it up.
