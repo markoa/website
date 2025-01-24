@@ -3,7 +3,7 @@ title: "Semaphore is now SOC 2 Type 2 Certified"
 pubDate: 2025-01-24 15:12Z
 type: "link"
 url: "https://semaphoreci.com/blog/semaphore-soc2-type2"
-published: false
+published: true
 ---
 
 We just got our SOC 2 Type 2 certification at Semaphore. This means we've proven our security practices work consistently over time, not just on paper. [Protecting our customers' code and data](https://semaphoreci.com/security) has always been a top priority for us, and now we have the audit to back it up.
