@@ -5,7 +5,7 @@ const { image, alt } = Astro.props;
 const id = crypto.randomUUID();
 ---
 
-<div class="cursor-pointer" data-lightbox-trigger={id}>
+<div class="lightbox-container" data-lightbox-trigger={id}>
   <Image
     src={image}
     alt={alt}
@@ -21,7 +21,8 @@ const id = crypto.randomUUID();
     <div
       class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-zoom-out"
       data-close
-    ></div>
+    >
+    </div>
     <Image
       src={image}
       alt={alt}
@@ -41,7 +42,7 @@ const id = crypto.randomUUID();
       lightbox.showModal();
     });
 
-    closeElements.forEach(element => {
+    closeElements.forEach((element) => {
       element.addEventListener("click", () => {
         lightbox.close();
       });
@@ -57,6 +58,18 @@ const id = crypto.randomUUID();
 </script>
 
 <style>
+  /* Hide lightbox trigger functionality on mobile */
+  @media (max-width: 640px) {
+    .lightbox-container {
+      pointer-events: none;
+    }
+
+    .lightbox-container img {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
   dialog::backdrop {
     display: none;
   }
@@ -64,6 +77,7 @@ const id = crypto.randomUUID();
   dialog {
     transition: opacity 0.3s ease-out;
     opacity: 0;
+    outline: none; /* Remove the focus outline */
   }
 
   dialog[open] {
