@@ -5,6 +5,8 @@ pubDate: 2025-01-29 17:05Z
 type: "link"
 url: "https://semaphoreci.com/blog/semaphore-is-going-open-source"
 published: true
+xPostId: "1884650482062249991"
+blueskyPostId: "3lgvhnxhxpc2f"
 ---
 
 After more than a decade of building Semaphore as a commercial CI/CD platform, we're open sourcing the entire core under Apache 2.0. This is a moment I've been waiting for for a long time. The stars have finally aligned — the tools for self-hosting cloud native applications have matured, developer tools have found their natural home in open source, and we've built something worth sharing with the world.
