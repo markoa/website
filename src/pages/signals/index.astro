@@ -93,7 +93,7 @@ const renderedPosts = await Promise.all(
                 <div class="flex items-center gap-3">
                   {(post.data.xPostId ||
                     post.data.blueskyPostId ||
-                    post.data.linkedinPostId) && <span>react on</span>}
+                    post.data.linkedinPostId) && <span>interact on</span>}
                   {post.data.xPostId && (
                     <a
                       href={`https://x.com/markoa/status/${post.data.xPostId}`}

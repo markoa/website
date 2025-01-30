@@ -4,6 +4,8 @@ description: "Therapy is expensive but saying this is free."
 pubDate: 2025-01-30 14:30Z
 type: "article"
 published: true
+xPostId: "1884973396577956201"
+blueskyPostId: "3lgxpduddxs2b"
 ---
 
 Therapy is expensive but saying this is free:
