@@ -29,8 +29,11 @@ const icons = {
 // Render all posts' content
 const renderedPosts = await Promise.all(
   sortedPosts.map(async (post) => {
-    const { Content } = await post.render();
-    return { ...post, Content };
+    if (post.render) {
+      const { Content } = await post.render();
+      return { ...post, Content };
+    }
+    return post;
   })
 );
 ---
@@ -83,7 +86,7 @@ const renderedPosts = await Promise.all(
               )}
 
               <div class="prose prose-gray prose-quoteless dark:prose-invert marker:text-gray-400 dark:marker:text-gray-500 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500">
-                <post.Content />
+                {post.Content && <post.Content />}
               </div>
 
               <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans">

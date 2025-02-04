@@ -3,6 +3,8 @@ import { image } from "astro:assets";
 
 const signals = defineCollection({
   type: "content",
+  contentCollectionType: "content",
+  render: "mdx",
   schema: ({ image }) =>
     z.object({
       title: z.string(),
