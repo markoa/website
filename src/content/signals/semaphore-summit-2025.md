@@ -5,6 +5,9 @@ pubDate: 2025-02-06 10:42Z
 type: "link"
 url: "https://semaphoreci.com/summit"
 published: true
+xPostId: "1887490176722833484"
+blueskyPostId: "3lhiwg5jh7k26"
+linkedinPostId: "markoa_semaphore-summit-2025-semaphore-activity-7293248322805415939-Bx8f"
 ---
 
 We're hosting a virtual Semaphore Summit on February 26-28 to kick off [our open source journey](/signals/semaphore-going-open-source).
