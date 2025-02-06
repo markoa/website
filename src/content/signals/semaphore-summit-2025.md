@@ -7,7 +7,7 @@ url: "https://semaphoreci.com/summit"
 published: true
 ---
 
-We're hosting a virtual Semaphore Summit on February 26th to kick off [our open source journey](/signals/semaphore-going-open-source).
+We're hosting a virtual Semaphore Summit on February 26-28 to kick off [our open source journey](/signals/semaphore-going-open-source).
 
 Each session is short and focused: Darko, our CTO, will open the Summit with a keynote on why we made this move and what it means for the future of CI/CD. Other engineers will share tips on running Semaphore and optimizing CI/CD workflows. We're also excited to host developers from companies like Confluent and SimplePractice sharing their experiences.
 
