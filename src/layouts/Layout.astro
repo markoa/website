@@ -1,4 +1,5 @@
 ---
+import Posthog from "../components/posthog.astro";
 import socialCard from "../assets/social-card.jpeg";
 import socialCardSquare from "../assets/social-card-square.jpeg";
 
@@ -72,6 +73,8 @@ const socialCardSquareUrl = new URL(
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
     />
+
+    <Posthog />
   </head>
   <body class="min-h-screen bg-white dark:bg-dark-base">
     <slot />
