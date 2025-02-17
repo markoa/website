@@ -40,8 +40,27 @@ export async function GET(context) {
       const rawContent = await container.renderToString(Content);
 
       // Process and sanitize content
+      // For photo posts, add the image at the top
+      let photoHtml = "";
+      if (post.data.type === "photo" && post.data.image) {
+        let imagePath;
+        if (typeof post.data.image === "string") {
+          // Handle string paths (e.g. "./_assets/photos/foggy-weekend.jpeg")
+          imagePath = post.data.image.startsWith(".")
+            ? `/signals/_assets/photos/${post.data.image.split("/").pop()}`
+            : post.data.image;
+        } else {
+          // Handle Astro processed images
+          imagePath = post.data.image.src;
+        }
+        const imageUrl = baseUrl + imagePath;
+        photoHtml = `<p><img src="${imageUrl}" alt="${
+          post.data.description || "Photo post"
+        }"></p>`;
+      }
+
       const content = await transform(
-        rawContent.replace(/^<!DOCTYPE html>/, ""),
+        (photoHtml + rawContent).replace(/^<!DOCTYPE html>/, ""),
         [
           // Make links and images absolute
           async (node) => {
@@ -60,11 +79,20 @@ export async function GET(context) {
         ]
       );
 
+      let feedLink = `/signals/${post.slug}/`;
+      let feedTitle = post.data.title;
+
+      // For link posts, use the external URL as the feed link
+      if (post.data.type === "link" && post.data.url) {
+        feedLink = post.data.url;
+        feedTitle = `${post.data.title} →`;
+      }
+
       feedItems.push({
-        title: post.data.title,
+        title: feedTitle,
         description: post.data.description || "",
         pubDate: post.data.pubDate,
-        link: `/signals/${post.slug}/`,
+        link: feedLink,
         content,
       });
     } catch (error) {
