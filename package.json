@@ -18,7 +18,8 @@
     "astro": "^5.1.0",
     "markdown-it": "^14.1.0",
     "marked": "^15.0.3",
-    "sanitize-html": "^2.14.0"
+    "sanitize-html": "^2.14.0",
+    "ultrahtml": "^1.5.3"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.3",

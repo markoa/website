@@ -1,7 +1,26 @@
 import rss from "@astrojs/rss";
+import { getContainerRenderer as getMDXRenderer } from "@astrojs/mdx";
 import { getCollection } from "astro:content";
+import { experimental_AstroContainer as AstroContainer } from "astro/container";
+import { loadRenderers } from "astro:container";
+import { transform, walk } from "ultrahtml";
+import sanitize from "ultrahtml/transformers/sanitize";
 
 export async function GET(context) {
+  if (!context.site) {
+    throw new Error("site URL is not configured in your astro.config.mjs file");
+  }
+
+  // Get base URL without trailing slash
+  let baseUrl = context.site.href;
+  if (baseUrl.at(-1) === "/") baseUrl = baseUrl.slice(0, -1);
+
+  // Create Astro container for rendering components
+  const container = await AstroContainer.create({
+    renderers: await loadRenderers([getMDXRenderer()]),
+  });
+
+  // Get and sort signals
   const signals = await getCollection("signals", ({ data }) => {
     return import.meta.env.PROD ? !data.draft : true;
   });
@@ -10,27 +29,70 @@ export async function GET(context) {
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 
+  // Process each signal
+  const feedItems = [];
+  for (const post of sortedSignals) {
+    try {
+      // Get the content component
+      const { Content } = await post.render();
+
+      // Render content to string
+      const rawContent = await container.renderToString(Content);
+
+      // Process and sanitize content
+      const content = await transform(
+        rawContent.replace(/^<!DOCTYPE html>/, ""),
+        [
+          // Make links and images absolute
+          async (node) => {
+            await walk(node, (node) => {
+              if (node.name === "a" && node.attributes.href?.startsWith("/")) {
+                node.attributes.href = baseUrl + node.attributes.href;
+              }
+              if (node.name === "img" && node.attributes.src?.startsWith("/")) {
+                node.attributes.src = baseUrl + node.attributes.src;
+              }
+            });
+            return node;
+          },
+          // Remove scripts and styles
+          sanitize({ dropElements: ["script", "style"] }),
+        ]
+      );
+
+      feedItems.push({
+        title: post.data.title,
+        description: post.data.description || "",
+        pubDate: post.data.pubDate,
+        link: `/signals/${post.slug}/`,
+        content,
+      });
+    } catch (error) {
+      console.error(`Error processing post ${post.id}:`, error);
+      // Fallback to description if content processing fails
+      feedItems.push({
+        title: post.data.title,
+        description: post.data.description || "",
+        pubDate: post.data.pubDate,
+        link: `/signals/${post.slug}/`,
+        content: post.data.description || "",
+      });
+    }
+  }
+
   return rss({
     title: "Marko Anastasov",
     description: "Signals from Marko Anastasov",
     site: context.site,
     trailingSlash: false,
-    items: sortedSignals.map((post) => {
-      const url = new URL(`signals/${post.slug}/`, context.site).toString();
-      const content = [
-        post.data.description,
-        `<p><a href="${url}">View post →</a></p>`,
-      ]
-        .filter(Boolean)
-        .join("\n");
-
-      return {
-        title: post.data.title,
-        pubDate: post.data.pubDate,
-        description: post.data.description || "",
-        link: `/signals/${post.slug}/`,
-        content,
-      };
-    }),
+    items: feedItems,
+    xmlns: {
+      atom: "http://www.w3.org/2005/Atom",
+      content: "http://purl.org/rss/1.0/modules/content/",
+    },
+    customData: `
+      <language>en-us</language>
+      <atom:link href="${baseUrl}/signals/rss.xml" rel="self" type="application/rss+xml" />
+    `,
   });
 }
