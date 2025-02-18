@@ -4,6 +4,8 @@ description: "Being data-driven sounds great, but you won't build a great produc
 pubDate: 2025-02-18 17:25Z
 type: "article"
 published: true
+xPostId: "1891903894264913961"
+blueskyPostId: "3lihsdfecqc26"
 ---
 
 I opened r/founder while waiting for my Magic Mouse to charge to 2%, started writing a reply and a few minutes later realized I was writing a blog post. So here goes a slightly extended version.
