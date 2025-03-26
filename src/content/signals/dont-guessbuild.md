@@ -4,6 +4,8 @@ description: "How we avoid guessbuilding at Operately by stopping feature develo
 pubDate: 2025-03-21 15:22Z
 type: "article"
 published: true
+xPostId: "1903110007182213274"
+blueskyPostId: "3lkvklqaax22s"
 ---
 
 One of the principles in product design that we've established at Operately is to avoid guessbuilding.
