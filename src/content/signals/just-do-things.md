@@ -4,6 +4,8 @@ description: "Do things. Learn things. Then do some more things."
 pubDate: 2025-03-26 23:08Z
 type: "article"
 published: true
+xPostId: "1905036227704721441"
+blueskyPostId: "3llcwaond5c2o"
 ---
 
 _You can just do things_ is the best startup meme in a long time.
