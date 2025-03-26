@@ -8,17 +8,15 @@ published: true
 
 One of the principles in product design that we've established at Operately is to avoid guessbuilding.
 
-It's the discipline of stopping the design of a new feature at the edge where certainty ends and speculation begins.
+We stop the design of a new feature at the edge where certainty ends and speculation begins.
 
-The pattern we've noticed is, we start by solving specific, well-defined problems that either we or our users are definitely experiencing. As we analyze the problems, we start seeing patterns that shape the general solution.
+The pattern we've noticed is, we start by solving specific problems that either we or our users are experiencing. As we analyze the problems, we start seeing patterns that shape the general solution.
 
 This is where things get dangerous. The general solution opens up possibilities for handling hypothetical use cases that we haven't actually encountered yet.
 
-I'm not saying this principle is new.
+This isn't new. In software development, people who practiced Extreme Programming in the mid 90s coined an acronym YAGNI – _you ain't gonna need it_.
 
-In software development, people who practiced Extreme Programming in the mid 90s coined an acronym YAGNI – _you ain't gonna need it_.
-
-Don't be a fool and spend time programming flexibility, infrastructure, and capabilities that you presume your software will need in the future — because it most likely won't.
+Don't be a fool and spend time programming capabilities that you presume your software will need in the future — because it most likely won't.
 
 Likewise, we aim to draw a clear line between:
 
@@ -32,7 +30,7 @@ When these phrases start appearing in our discussions, it's usually a sign that 
 - "What if someone needs to..."
 - "We should make this flexible enough to handle..."
 
-So we stop there to build confidently for the known needs, ship that solution, and move on to another area of our product. We return to expand our solution when it has simmered long enough to have new evidence emerge that clearly indicates what we should build next.
+So we stop there to build confidently for the known needs, ship that solution, and move on to another area of our product. The new solution needs to simmer long enough to have new evidence emerge that clearly indicates what we should build next.
 
 ### An example
 
