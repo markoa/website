@@ -4,6 +4,9 @@ description: ""
 pubDate: 2025-04-03 09:58Z
 type: "article"
 published: true
+xPostId: "1907740059006021787"
+blueskyPostId: "3llvol4vxps2p"
+linkedinPostId: "markoa_the-cofounder-checklist-nobody-shows-you-activity-7313504899743285249-_S_3"
 ---
 
 Successful companies are built on strong cofounder relationships. These partnerships don't happen by accident - they require these foundations:
