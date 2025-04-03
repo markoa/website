@@ -1,5 +1,5 @@
 ---
-title: "Don't guessbuild"
+title: "Don't Guessbuild"
 description: "How we avoid guessbuilding at Operately by stopping feature development where certainty ends and speculation begins."
 pubDate: 2025-03-21 15:22Z
 type: "article"
