@@ -1,6 +1,6 @@
 ---
 title: "A Checklist for Cofounder Happiness"
-description: ""
+description: "The cofounder checklist nobody shows you before you start"
 pubDate: 2025-04-03 09:58Z
 type: "article"
 published: true
