@@ -1,7 +1,7 @@
 ---
 title: "A Checklist for Cofounder Happiness"
 description: ""
-pubDate: 2025-04-03 10:58Z
+pubDate: 2025-04-03 09:58Z
 type: "article"
 published: true
 ---

@@ -16,6 +16,7 @@ export default {
       typography: {
         DEFAULT: {
           css: {
+            // Font family customizations
             "h1, h2, h3, h4, h5, h6": {
               fontFamily: "Lato, ui-sans-serif, system-ui",
             },
@@ -25,6 +26,12 @@ export default {
             li: {
               fontFamily: "PT Serif, ui-serif, Georgia",
             },
+          },
+        },
+        // Custom stone theme customizations following light-base color
+        stone: {
+          css: {
+            "--tw-prose-body": colors.stone[950],
           },
         },
       },
