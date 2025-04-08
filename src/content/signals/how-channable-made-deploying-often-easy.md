@@ -10,7 +10,7 @@ blueskyPostId: "3lmc5w5w5i22k"
 linkedInPostId: "markoa_automated-deployments-how-we-made-deploying-activity-7315301885307985923-9FFB"
 ---
 
-This 250+ person tech company deploys 50+ times daily with zero drama.
+This 250+ person tech company deploys 50+ times daily with zero drama:
 
 > At various times, CI was not fast enough, in response to which we did various optimizations. Very aggressive caching played a large role. We also made sure we only tested code that actually changed. In the early days of our CI adventure we switched CI providers twice before settling on Semaphore for performance and ergonomics reasons.
 
