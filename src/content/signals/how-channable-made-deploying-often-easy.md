@@ -7,7 +7,7 @@ url: "https://www.channable.com/tech/automated-deployments"
 published: true
 xPostId: "1909537477746127204"
 blueskyPostId: "3lmc5w5w5i22k"
-linkedInPostId: "markoa_automated-deployments-how-we-made-deploying-activity-7315301885307985923-9FFB"
+linkedinPostId: "markoa_automated-deployments-how-we-made-deploying-activity-7315301885307985923-9FFB"
 ---
 
 This 250+ person tech company deploys 50+ times daily with zero drama:
