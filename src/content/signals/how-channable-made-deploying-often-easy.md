@@ -12,6 +12,8 @@ linkedInPostId: "markoa_automated-deployments-how-we-made-deploying-activity-731
 
 This 250+ person tech company deploys 50+ times daily with zero drama.
 
+> At various times, CI was not fast enough, in response to which we did various optimizations. Very aggressive caching played a large role. We also made sure we only tested code that actually changed. In the early days of our CI adventure we switched CI providers twice before settling on Semaphore for performance and ergonomics reasons.
+
 It's incredibly rewarding to see how companies like Channable use Semaphore to power their development workflow. Their journey shows exactly why we built Semaphore with performance and developer experience in mind.
 
 - Developers can get new features to production with just a few simple steps
