@@ -58,8 +58,8 @@ const renderedPosts = await Promise.all(
                     alt={post.data.description || "Photo post"}
                   />
                   {post.data.description && (
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                      {post.data.description}
+                    <p class="text-gray-600 text-sm dark:text-gray-300 mb-4">
+                      <em>{post.data.description}</em>
                     </p>
                   )}
                 </>

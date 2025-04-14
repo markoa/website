@@ -56,8 +56,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
                 alt={frontmatter.description || "Photo post"}
               />
               {frontmatter.description && (
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                  {frontmatter.description}
+                <p class="text-gray-600 text-sm dark:text-gray-300 mb-4">
+                  <em>{frontmatter.description}</em>
                 </p>
               )}
             </>
