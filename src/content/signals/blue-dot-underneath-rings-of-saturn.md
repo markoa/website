@@ -5,6 +5,8 @@ pubDate: 2025-04-14 08:37Z
 type: "photo"
 image: "./_assets/webclips/The_Day_The_Earth_Smiled_-_Preview.jpg"
 published: true
+xPostId: "1911700815246426462"
+blueskyPostId: "3lmr625qvbc2r"
 ---
 
 [The Day the Earth
