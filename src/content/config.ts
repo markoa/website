@@ -3,8 +3,6 @@ import { image } from "astro:assets";
 
 const signals = defineCollection({
   type: "content",
-  contentCollectionType: "content",
-  render: "mdx",
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -22,6 +20,7 @@ const signals = defineCollection({
       xPostId: z.string().optional(), // ID of the post on X/Twitter
       blueskyPostId: z.string().optional(), // ID of the post on Bluesky
       linkedinPostId: z.string().optional(), // ID of the post on LinkedIn
+      zoraPostId: z.string().optional(), // ID of the post on Zora.co
     }),
 });
 

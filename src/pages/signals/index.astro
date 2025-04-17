@@ -9,6 +9,7 @@ import {
   faXTwitter,
   faBluesky,
   faLinkedin,
+  faEthereum,
 } from "@fortawesome/free-brands-svg-icons";
 import { formatDate } from "../../utils/date";
 
@@ -24,6 +25,7 @@ const icons = {
   xTwitter: icon(faXTwitter).html[0],
   bluesky: icon(faBluesky).html[0],
   linkedin: icon(faLinkedin).html[0],
+  zora: icon(faEthereum).html[0],
 };
 
 // Render all posts' content
@@ -31,9 +33,9 @@ const renderedPosts = await Promise.all(
   sortedPosts.map(async (post) => {
     if (post.render) {
       const { Content } = await post.render();
-      return { ...post, Content };
+      return { ...post, Content } as any; // Type assertion to fix lint errors
     }
-    return post;
+    return post as any; // Type assertion to fix lint errors
   })
 );
 ---
@@ -96,7 +98,8 @@ const renderedPosts = await Promise.all(
                 <div class="flex items-center gap-3">
                   {(post.data.xPostId ||
                     post.data.blueskyPostId ||
-                    post.data.linkedinPostId) && <span>interact on</span>}
+                    post.data.linkedinPostId ||
+                    post.data.zoraPostId) && <span>interact on</span>}
                   {post.data.xPostId && (
                     <a
                       href={`https://x.com/markoa/status/${post.data.xPostId}`}
@@ -135,6 +138,20 @@ const renderedPosts = await Promise.all(
                       <span class="w-3 h-3">
                         <span class="[&>svg]:w-3 [&>svg]:h-3">
                           <Fragment set:html={icons.linkedin} />
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                  {post.data.zoraPostId && (
+                    <a
+                      href={`https://zora.co/${post.data.zoraPostId}`}
+                      class="hover:text-gray-900 dark:hover:text-gray-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="w-3 h-3">
+                        <span class="[&>svg]:w-3 [&>svg]:h-3">
+                          <Fragment set:html={icons.zora} />
                         </span>
                       </span>
                     </a>
