@@ -4,6 +4,9 @@ description: "A former U.S. Chief Data Scientist's simple daily reminder card of
 pubDate: 2025-05-21 10:33Z
 type: "article"
 published: true
+xPostId: "1925140764402524665"
+blueskyPostId: "3lpogem764224"
+linkedinPostId: "markoa_a-former-us-chief-data-scientistsdaily-activity-7330907359034216449-95B8"
 ---
 
 [DJ Patil, former U.S. Chief Data Scientist](https://medium.com/@dpatil/class-of-2020-from-one-data-scientist-to-another-f3de5f2d70d) kept this as a daily reminder card:
