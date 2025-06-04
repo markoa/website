@@ -4,6 +4,9 @@ description: "A personal message that feels AI-generated is dismissed at best, a
 pubDate: 2025-06-03 9:48Z
 type: "article"
 published: true
+linkedInPostId: "markoa_ai-generated-personal-message-equals-trash-activity-7335607135277363201-LyNj"
+blueskyPostId: "3lqp242s35k2d"
+xPostId: "1929868919566651692"
 ---
 
 [A paper from Harvard Business School (PDF)](https://www.hbs.edu/ris/Publication%20Files/25-008_7583ddd3-d5ed-46d5-9475-453a44da0f60.pdf) provides data evidence on something we all knew: people dismiss AI-generated personal messages at best, and consider them offensive at worst.
