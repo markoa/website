@@ -4,6 +4,8 @@ description: "When something hurts, lean into it. The discomfort is the teacher 
 pubDate: 2025-10-13 08:42Z
 type: "article"
 published: true
+xPostId: "1977671328497914241"
+hackerNewsPostId: "45566481"
 ---
 
 A common saying from the culture of Continuous Delivery is _"If it hurts, do it more often"_.

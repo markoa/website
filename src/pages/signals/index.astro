@@ -9,6 +9,7 @@ import {
   faXTwitter,
   faBluesky,
   faLinkedin,
+  faHackerNews,
   faEthereum,
 } from "@fortawesome/free-brands-svg-icons";
 import { formatDate } from "../../utils/date";
@@ -25,6 +26,7 @@ const icons = {
   xTwitter: icon(faXTwitter).html[0],
   bluesky: icon(faBluesky).html[0],
   linkedin: icon(faLinkedin).html[0],
+  hackerNews: icon(faHackerNews).html[0],
   zora: icon(faEthereum).html[0],
 };
 
@@ -99,6 +101,7 @@ const renderedPosts = await Promise.all(
                   {(post.data.xPostId ||
                     post.data.blueskyPostId ||
                     post.data.linkedinPostId ||
+                    post.data.hackerNewsPostId ||
                     post.data.zoraPostId) && <span>interact on</span>}
                   {post.data.xPostId && (
                     <a
@@ -124,6 +127,20 @@ const renderedPosts = await Promise.all(
                       <span class="w-3 h-3">
                         <span class="[&>svg]:w-3 [&>svg]:h-3">
                           <Fragment set:html={icons.bluesky} />
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                  {post.data.hackerNewsPostId && (
+                    <a
+                      href={`https://news.ycombinator.com/item?id=${post.data.hackerNewsPostId}`}
+                      class="hover:text-gray-900 dark:hover:text-gray-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="w-3 h-3">
+                        <span class="[&>svg]:w-3 [&>svg]:h-3">
+                          <Fragment set:html={icons.hackerNews} />
                         </span>
                       </span>
                     </a>
