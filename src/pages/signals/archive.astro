@@ -1,0 +1,88 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import BlogSidebar from "../../components/BlogSidebar.astro";
+import MenuButton from "../../components/MenuButton.astro";
+import { formatDate } from "../../utils/date";
+
+const posts = await getCollection("signals", ({ data }) => {
+  return import.meta.env.PROD ? data.published : true;
+});
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const postsByYear = sortedPosts.reduce<Record<number, typeof sortedPosts>>(
+  (acc, post) => {
+    const year = post.data.pubDate.getFullYear();
+    acc[year] = acc[year] ?? [];
+    acc[year].push(post);
+    return acc;
+  },
+  {}
+);
+
+const years = Object.keys(postsByYear)
+  .map((year) => Number(year))
+  .sort((a, b) => b - a);
+
+const getISODate = (timestamp: string | Date) => {
+  const date = new Date(timestamp);
+  return date.toISOString();
+};
+---
+
+<Layout
+  title="Signals Archive"
+  description="Browse every Signals post grouped by year."
+>
+  <div class="flex dark:bg-dark-base min-h-screen">
+    <MenuButton />
+    <BlogSidebar />
+
+    <main
+      class="w-full px-8 pt-24 pb-16 lg:py-16 lg:pl-48 lg:pr-8 max-w-2xl lg:ml-48"
+    >
+      <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-12">
+        Archive
+      </h1>
+
+      <div class="space-y-16">
+        {
+          years.length > 0 ? (
+            years.map((year) => (
+              <section>
+                <h2 class="text-lg font-medium text-gray-800 dark:text-gray-200 mb-6">
+                  {year}
+                </h2>
+                <ul class="space-y-4">
+                  {postsByYear[year].map((post) => (
+                    <li class="space-y-1">
+                      <a
+                        href={`/signals/${post.slug}`}
+                        class="block text-base text-gray-900 dark:text-gray-50 hover:text-gray-600 dark:hover:text-gray-200"
+                      >
+                        {post.data.title}
+                      </a>
+                      <time
+                        datetime={getISODate(post.data.pubDate)}
+                        class="block text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400"
+                      >
+                        {formatDate(post.data.pubDate, { includeTime: false })}
+                      </time>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))
+          ) : (
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              No posts to show yet.
+            </p>
+          )
+        }
+      </div>
+    </main>
+  </div>
+</Layout>

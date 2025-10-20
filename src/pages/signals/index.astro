@@ -22,6 +22,11 @@ const sortedPosts = posts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+const currentYear = new Date().getFullYear();
+const postsThisYear = sortedPosts.filter(
+  (post) => post.data.pubDate.getFullYear() === currentYear
+);
+
 const icons = {
   xTwitter: icon(faXTwitter).html[0],
   bluesky: icon(faBluesky).html[0],
@@ -32,7 +37,7 @@ const icons = {
 
 // Render all posts' content
 const renderedPosts = await Promise.all(
-  sortedPosts.map(async (post) => {
+  postsThisYear.map(async (post) => {
     if (post.render) {
       const { Content } = await post.render();
       return { ...post, Content } as any; // Type assertion to fix lint errors
@@ -53,131 +58,153 @@ const renderedPosts = await Promise.all(
     >
       <div class="space-y-48">
         {
-          renderedPosts.map((post) => (
-            <article class="space-y-4">
-              {post.data.type === "photo" && post.data.image && (
-                <>
-                  <ImageLightbox
-                    image={post.data.image}
-                    alt={post.data.description || "Photo post"}
-                  />
-                  {post.data.description && (
-                    <p class="text-gray-600 text-sm dark:text-gray-300 mb-4">
-                      <em>{post.data.description}</em>
-                    </p>
-                  )}
-                </>
-              )}
+          renderedPosts.length > 0 ? (
+            renderedPosts.map((post) => (
+              <article class="space-y-4">
+                {post.data.type === "photo" && post.data.image && (
+                  <>
+                    <ImageLightbox
+                      image={post.data.image}
+                      alt={post.data.description || "Photo post"}
+                    />
+                    {post.data.description && (
+                      <p class="text-gray-600 text-sm dark:text-gray-300 mb-4">
+                        <em>{post.data.description}</em>
+                      </p>
+                    )}
+                  </>
+                )}
 
-              {post.data.type !== "photo" && (
-                <h2 class="text-xl dark:text-white">
-                  {post.data.type === "link" ? (
-                    <a
-                      href={post.data.url}
-                      class="hover:text-gray-600 dark:hover:text-gray-300"
-                    >
-                      {post.data.title} →
-                    </a>
-                  ) : (
-                    <a
-                      href={`/signals/${post.slug}`}
-                      class="hover:text-gray-600 dark:hover:text-gray-300"
-                    >
-                      {post.data.title}
-                    </a>
-                  )}
-                </h2>
-              )}
+                {post.data.type !== "photo" && (
+                  <h2 class="text-xl dark:text-white">
+                    {post.data.type === "link" ? (
+                      <a
+                        href={post.data.url}
+                        class="hover:text-gray-600 dark:hover:text-gray-300"
+                      >
+                        {post.data.title} →
+                      </a>
+                    ) : (
+                      <a
+                        href={`/signals/${post.slug}`}
+                        class="hover:text-gray-600 dark:hover:text-gray-300"
+                      >
+                        {post.data.title}
+                      </a>
+                    )}
+                  </h2>
+                )}
 
-              <div class="prose prose-stone prose-quoteless prose-h3:text-lg dark:prose-invert marker:text-gray-400 dark:marker:text-gray-500 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500 ">
-                {post.Content && <post.Content />}
-              </div>
-
-              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans">
-                <a href={`/signals/${post.slug}`}>
-                  {formatDate(post.data.pubDate)}
-                </a>
-                <div class="flex items-center gap-3">
-                  {(post.data.xPostId ||
-                    post.data.blueskyPostId ||
-                    post.data.linkedinPostId ||
-                    post.data.hackerNewsPostId ||
-                    post.data.zoraPostId) && <span>interact on</span>}
-                  {post.data.xPostId && (
-                    <a
-                      href={`https://x.com/markoa/status/${post.data.xPostId}`}
-                      class="hover:text-gray-900 dark:hover:text-gray-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="w-3 h-3">
-                        <span class="[&>svg]:w-3 [&>svg]:h-3">
-                          <Fragment set:html={icons.xTwitter} />
-                        </span>
-                      </span>
-                    </a>
-                  )}
-                  {post.data.blueskyPostId && (
-                    <a
-                      href={`https://bsky.app/profile/markoanastasov.bsky.social/post/${post.data.blueskyPostId}`}
-                      class="hover:text-gray-900 dark:hover:text-gray-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="w-3 h-3">
-                        <span class="[&>svg]:w-3 [&>svg]:h-3">
-                          <Fragment set:html={icons.bluesky} />
-                        </span>
-                      </span>
-                    </a>
-                  )}
-                  {post.data.hackerNewsPostId && (
-                    <a
-                      href={`https://news.ycombinator.com/item?id=${post.data.hackerNewsPostId}`}
-                      class="hover:text-gray-900 dark:hover:text-gray-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="w-3 h-3">
-                        <span class="[&>svg]:w-3 [&>svg]:h-3">
-                          <Fragment set:html={icons.hackerNews} />
-                        </span>
-                      </span>
-                    </a>
-                  )}
-                  {post.data.linkedinPostId && (
-                    <a
-                      href={`https://www.linkedin.com/posts/${post.data.linkedinPostId}/`}
-                      class="hover:text-gray-900 dark:hover:text-gray-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="w-3 h-3">
-                        <span class="[&>svg]:w-3 [&>svg]:h-3">
-                          <Fragment set:html={icons.linkedin} />
-                        </span>
-                      </span>
-                    </a>
-                  )}
-                  {post.data.zoraPostId && (
-                    <a
-                      href={`https://zora.co/${post.data.zoraPostId}`}
-                      class="hover:text-gray-900 dark:hover:text-gray-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="w-3 h-3">
-                        <span class="[&>svg]:w-3 [&>svg]:h-3">
-                          <Fragment set:html={icons.zora} />
-                        </span>
-                      </span>
-                    </a>
-                  )}
+                <div class="prose prose-stone prose-quoteless prose-h3:text-lg dark:prose-invert marker:text-gray-400 dark:marker:text-gray-500 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500 ">
+                  {post.Content && <post.Content />}
                 </div>
-              </div>
-            </article>
-          ))
+
+                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans">
+                  <a href={`/signals/${post.slug}`}>
+                    {formatDate(post.data.pubDate)}
+                  </a>
+                  <div class="flex items-center gap-3">
+                    {(post.data.xPostId ||
+                      post.data.blueskyPostId ||
+                      post.data.linkedinPostId ||
+                      post.data.hackerNewsPostId ||
+                      post.data.zoraPostId) && <span>interact on</span>}
+                    {post.data.xPostId && (
+                      <a
+                        href={`https://x.com/markoa/status/${post.data.xPostId}`}
+                        class="hover:text-gray-900 dark:hover:text-gray-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span class="w-3 h-3">
+                          <span class="[&>svg]:w-3 [&>svg]:h-3">
+                            <Fragment set:html={icons.xTwitter} />
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                    {post.data.blueskyPostId && (
+                      <a
+                        href={`https://bsky.app/profile/markoanastasov.bsky.social/post/${post.data.blueskyPostId}`}
+                        class="hover:text-gray-900 dark:hover:text-gray-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span class="w-3 h-3">
+                          <span class="[&>svg]:w-3 [&>svg]:h-3">
+                            <Fragment set:html={icons.bluesky} />
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                    {post.data.hackerNewsPostId && (
+                      <a
+                        href={`https://news.ycombinator.com/item?id=${post.data.hackerNewsPostId}`}
+                        class="hover:text-gray-900 dark:hover:text-gray-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span class="w-3 h-3">
+                          <span class="[&>svg]:w-3 [&>svg]:h-3">
+                            <Fragment set:html={icons.hackerNews} />
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                    {post.data.linkedinPostId && (
+                      <a
+                        href={`https://www.linkedin.com/posts/${post.data.linkedinPostId}/`}
+                        class="hover:text-gray-900 dark:hover:text-gray-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span class="w-3 h-3">
+                          <span class="[&>svg]:w-3 [&>svg]:h-3">
+                            <Fragment set:html={icons.linkedin} />
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                    {post.data.zoraPostId && (
+                      <a
+                        href={`https://zora.co/${post.data.zoraPostId}`}
+                        class="hover:text-gray-900 dark:hover:text-gray-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span class="w-3 h-3">
+                          <span class="[&>svg]:w-3 [&>svg]:h-3">
+                            <Fragment set:html={icons.zora} />
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))
+          ) : (
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              No signals yet this year. Browse the{" "}
+              <a
+                href="/signals/archive"
+                class="underline decoration-gray-400 dark:decoration-gray-500 hover:text-gray-800 dark:hover:text-gray-100"
+              >
+                archive
+              </a>
+              .
+            </p>
+          )
         }
+      </div>
+
+      <div class="mt-24 text-sm text-gray-500 dark:text-gray-400">
+        <a
+          href="/signals/archive"
+          class="inline-flex items-center gap-1 hover:text-gray-800 dark:hover:text-gray-200"
+        >
+          Browse older posts in the archive<span aria-hidden="true">→</span>
+        </a>
       </div>
     </main>
   </div>

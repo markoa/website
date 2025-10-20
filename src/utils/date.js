@@ -1,4 +1,4 @@
-export const formatDate = (timestamp) => {
+export const formatDate = (timestamp, { includeTime = true } = {}) => {
   const date = new Date(timestamp);
   const now = new Date();
 
@@ -6,15 +6,20 @@ export const formatDate = (timestamp) => {
   const month = date
     .toLocaleDateString("en-US", { month: "short" })
     .toLowerCase();
+
+  const year =
+    date.getFullYear() !== now.getFullYear() ? ` ${date.getFullYear()}` : "";
+
+  if (!includeTime) {
+    return `${day} ${month}${year}`;
+  }
+
   const time = date
     .toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
     })
     .toLowerCase();
-
-  const year =
-    date.getFullYear() !== now.getFullYear() ? ` ${date.getFullYear()}` : "";
 
   return `${day} ${month}${year}, ${time}`;
 };
