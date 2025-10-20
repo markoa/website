@@ -94,7 +94,7 @@ const canonicalURL =
         </div>
         {
           frontmatter.canonicalUrl && (
-            <p class="mt-4 text-xs text-gray-500 dark:text-gray-400 font-sans">
+            <p class="mt-4 text-xs text-gray-500 dark:text-gray-400 font-sans italic">
               Originally posted on{" "}
               <a
                 href={frontmatter.canonicalUrl}
@@ -104,7 +104,6 @@ const canonicalURL =
               >
                 {frontmatter.canonicalUrl}
               </a>
-              .
             </p>
           )
         }
