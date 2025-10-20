@@ -28,7 +28,9 @@ const getISODate = (timestamp: string | Date) => {
   return date.toISOString();
 };
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const canonicalURL =
+  frontmatter.canonicalUrl ??
+  new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <Layout
@@ -90,6 +92,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
         >
           <slot />
         </div>
+        {
+          frontmatter.canonicalUrl && (
+            <p class="mt-4 text-xs text-gray-500 dark:text-gray-400 font-sans">
+              Originally posted on{" "}
+              <a
+                href={frontmatter.canonicalUrl}
+                class="underline decoration-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {frontmatter.canonicalUrl}
+              </a>
+              .
+            </p>
+          )
+        }
 
         <div
           class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 font-sans"

@@ -22,6 +22,7 @@ const signals = defineCollection({
       linkedinPostId: z.string().optional(), // ID of the post on LinkedIn
       zoraPostId: z.string().optional(), // ID of the post on Zora.co
       hackerNewsPostId: z.string().optional(), // Item ID of the thread on Hacker News
+      canonicalUrl: z.string().url().optional(), // Original canonical URL if syndicated
     }),
 });
 
