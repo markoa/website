@@ -49,7 +49,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
     <!-- Main content -->
     <main
-      class="w-full px-8 pt-24 pb-16 lg:py-24 lg:pl-48 lg:pr-8 max-w-[680px] lg:ml-48"
+      class="w-full px-8 pt-24 pb-16 lg:py-24 lg:pl-48 lg:pr-8 max-w-2xl lg:ml-48"
     >
       <article class="space-y-4">
         {
@@ -86,7 +86,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
         }
 
         <div
-          class="prose prose-stone prose-quoteless prose-h3:text-lg prose-h3:font-light dark:prose-invert prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500"
+          class="prose prose-stone prose-quoteless prose-h3:text-lg prose-h3:font-light dark:prose-invert prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500"
         >
           <slot />
         </div>
