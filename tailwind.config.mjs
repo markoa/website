@@ -26,6 +26,21 @@ export default {
             li: {
               fontFamily: "PT Serif, ui-serif, Georgia",
             },
+            code: {
+              fontFamily:
+                "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+              fontWeight: "400",
+            },
+            "code::before": { content: '""' },
+            "code::after": { content: '""' },
+            pre: {
+              overflowX: "auto",
+              fontFamily:
+                "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+            },
+            "pre code": {
+              fontFamily: "inherit",
+            },
           },
         },
         // Custom stone theme customizations following light-base color

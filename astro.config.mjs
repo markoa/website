@@ -6,5 +6,19 @@ import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://markoanastasov.com",
-  integrations: [tailwind(), mdx()],
+  markdown: {
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+    },
+  },
+  integrations: [
+    tailwind(),
+    mdx({
+      extendMarkdownConfig: true,
+    }),
+  ],
 });

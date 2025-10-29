@@ -1,0 +1,15 @@
+.astro-code {
+  color: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .astro-code.astro-code-themes {
+    background-color: var(--shiki-dark-bg) !important;
+    color: var(--shiki-dark) !important;
+  }
+
+  .astro-code.astro-code-themes .line,
+  .astro-code.astro-code-themes .line span {
+    color: var(--shiki-dark) !important;
+  }
+}
