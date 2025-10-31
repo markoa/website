@@ -1,0 +1,214 @@
+---
+title: "Behavior-Driven Development"
+pubDate: 2022-03-31 09:42Z
+type: "article"
+published: true
+canonicalUrl: "https://semaphore.io/community/tutorials/behavior-driven-development"
+---
+
+import ImageLightbox from "../../../components/ImageLightbox.astro";
+import waterfallModel from "./waterfall-model.jpg";
+import bdd02 from "./bdd-02.jpg";
+import bdd03 from "./bdd-03.jpg";
+import waterfallvstestfirst from "./waterfall-vs-test-first.jpg";
+import bdd04 from "./bdd-04.jpg";
+import bdd05 from "./bdd-05.jpg";
+import bdd06 from "./bdd-06.jpg";
+import bdd07 from "./bdd-07.jpg";
+import bdd08 from "./bdd-08.jpg";
+import invertedTestPyramid from "./inverted-test-pyramid.jpg";
+import bdd09 from "./bdd-09.jpg";
+
+
+Behavior-Driven Development (BDD) is about minimizing the feedback loop. It is a logical step forward in the evolution of software development practices. This article explains the concept and its origins.
+
+### Waterfall
+If you are a software developer or an engineering manager, you are probably familiar with the Waterfall Model, shown in the following diagram:
+
+<ImageLightbox image={waterfallModel} alt="Diagram of the Waterfall software development model" />
+
+What was later named “Waterfall” was first formally described by Winston Royce in his 1970 paper _Managing the development of large software systems_ ([ACM](https://dl.acm.org/doi/10.5555/41765.41801)). I recommend reading the whole paper to understand the idea. Most people learn about it secondhand and assume that this process was presented as the ultimate solution at the time. However, Royce recognized that having a testing phase at the end of the development process was a major problem:
+
+> I believe in this concept, but the implementation described above is risky and invites failure. […] The testing phase, which occurs at the end of the development cycle, is the first event for which timing, storage, input/output transfers, etc., are experienced as distinguished from analyzed. […] The required design changes are likely to be so disruptive that the software requirements upon which the design is based and which provides the rationale for everything are violated. Either the requirements must be modified, or a substantial change in the design is required. In effect, the development process has returned to the origin, and one can expect up to a 100-percent overrun in schedule and/or costs.
+
+This model is still used to develop software in many companies worldwide for various reasons. Waterfall implies flow, but in practice, there are always feedback loops between phases. All major improvements to the model over time have been made by minimizing the feedback loops and making them as predictable as possible.
+
+For example, if we write a program, we want to know how long it will take us to find out if it works. On the other hand, if we design a part of a system, we want to learn if it is actually programmable and verifiable, and at what cost.
+
+So, when we look at a feedback loop, we look for methods we can use to minimize it. At first, our goal is to remove obviously wasteful work. Later, we realize that we can optimize and do things faster and better than we could have ever imagined back when we were doing things the old way.
+
+### The first optimization: Test-First Programming
+The first optimization emerged from the Coding and Testing phases. In the traditional quality assurance-based (QA-based) development model, a programmer wrote code and submitted it to the QA team. It took a day, a few, or weeks to get a report on whether the code worked and if the rest of the program worked as well. There were often bugs, so we would have to go back to programming and fix any issues, even though we thought the work was finished.
+
+<ImageLightbox image={bdd02} alt="Test-first programming" />
+
+To cut down the feedback loop, developers started coding and verifying simultaneously, i.e. writing some code, and then writing some tests for it. Tests produced an excellent side effect–the automated test suite–which we can run at any time to verify every part of the system for which we have written a test. From this emerged the desire to have a test suite that covers the entire system in order to be able to work as safely as possible.
+
+The feedback loop of coding followed by testing still takes some time, so the next step was to invert it: writing tests before writing a single line of code. In this way, the feedback loop shrinks, and it doesn’t take long to realize that developers are writing only the code needed in order to pass the existing tests.
+
+<ImageLightbox image={bdd03} alt="Test-first programming" />
+
+This is called **Test-First Programming**. When working test-first, tests are used to help “fill in” the implementation correctly. This reduces the number of bugs, increases programmer productivity, and positively affects the tempo of the whole team.
+
+### The problem with writing tests later
+The Waterfall Model puts tests at the end of the development cycle, which, as we’ve seen, is very inefficient. But that is not the only problem. Code written in isolation is difficult to test because developers  are focused on solving a problem rather than writing testable code.
+
+Later, when we begin writing tests, the mindset is yet again in the wrong place: we’re concentrating on testing that the code we wrote is indeed the code we wrote, instead of testing the code’s behavior.
+
+<ImageLightbox image={waterfallvstestfirst} alt="Waterfall vs Test-First Programming" />
+
+The result of this is that code and tests become highly coupled. This results in even more problems when we refactor. Changing tightly-coupled code makes the related test obsolete — we have to rewrite a bunch of tests every time we change something in the code. The feedback loop suffers and gets longer as we continually deal with the consequences of past decisions.
+
+The solution is to have a test-first mindset. When tests come first, no pre-existing code influences  how we write them and we can write tests that check what the code is actually supposed to do. We also get another benefit: the resulting code is mode modular and testable, making tests smaller and more readable.
+
+### Test-Driven Development
+Once we have a continuous loop of testing and coding, we’re still doing all our program design upfront. We’re using Test-First Programming to make sure that our code works, but there’s a feedback loop where we may find out (disturbingly late) that a design is difficult to test, impossible to code, performs poorly, or just doesn’t fit together with the rest of the system as we are trying to implement it.
+
+<ImageLightbox image={bdd04} alt="Test-First Development with Design" />
+
+To minimize this loop, we apply the same technique. We invert it again by doing Test-First Programming before we start designing. Or rather, we do the Testing, Coding, and Program Design steps all at the same time. A test influences code, which in turn influences design, which influences our next test.
+
+<ImageLightbox image={bdd05} alt="Test-Driven Development" />
+
+It quickly becomes clear  that this cycle organically drives design ideas, and we start to implement only the parts of the design that we need in a way that can easily evolve. Design now includes a substantial refactoring step, which gives us the confidence to under-design instead of over-engineer. That is, we end up with just enough design and appropriate code which meets our current requirements.
+
+This is **Test-Driven Development (TDD)**. It combines Test-First Programming with design thinking by continuously applying refactoring principles and patterns. The positive side-effects are now amplified: we have not only reduced the number of bugs, but we are also not writing any code that doesn’t help us implement a feature. This further increases the team’s productivity by helping avoid design mistakes which are more costly to fix down the road.
+
+TDD is the crystallization of an old idea that says that design and testing should be interlaced in a continuous iteration loop. From the 1968 [_First NATO Software Engineering Conference_](http://homepages.cs.ncl.ac.uk/brian.randell/NATO/NATOReports/):
+
+> A software system can best be designed if the testing is interlaced with the designing, instead of being used after the design. [..] A simulation which matches the requirements contains the control which organizes the design of the system. [..] Through successive repetitions of this process of interlaced testing and design, the model ultimately becomes the software system itself.
+
+### Making the next step with Behavior-Driven Development
+
+Now that we are designing, coding, and testing in one loop, it’s time to revisit at the Analysis step. By analysis, I assume “understanding what we need to build”. Again, we’re interested in optimizing the loop in the name of efficiency. In practice, this would involve preparing a list of a dozen or more features and passing it on to developers, who would complete them all before moving forward. This way, we often end up implementing features that we don’t need. Sometimes we also discover new features we didn’t expect or discover something new about the features that we know we need.
+
+<ImageLightbox image={bdd06} alt="TDD without analysis" />
+
+We can apply the same technique and bring Analysis into our loop. Now we test-drive a feature before we try to implement another. It is worth illustrating that the duration of such cycles for a developer is measured in hours, sometimes even minutes, not in days or weeks.
+
+<ImageLightbox image={bdd07} alt="TDD with analysis" />
+
+After applying this technique consistently for a while, we notice that we tend to break down all features in the smallest units and consistently deliver them one by one. Our understanding of how features affect one another improves and we find ourselves able to respond to changes faster. This allows us to identify and discard unwanted features quickly and prioritize important features.
+
+By test-driving our analysis, we better understand the system’s behavior and how to appropriately design and implement it. At the same time, all that we are doing from day one is producing a test suite, which keeps our entire system constantly verifiable.
+
+<ImageLightbox image={bdd08} alt="Behavior-driven development process diagram" />
+
+This is called **Behavior-Driven Development (BDD)**. It saves time for both the stakeholders (business owners) and the development team. By asking questions early, developers help both themselves and the stakeholders gain a deep understanding of what they are building. Stakeholders get results at a predictable pace, and since the features are worked on in small chunks, estimates can be done more accurately and new features can be planned and prioritized accordingly.
+
+## The BDD Lifecycle
+The BDD lifecycle begins with the discovery phase. The team discusses and refines user stories in this phase by clarifying acceptance criteria. Stakeholders, product owners, and developers collaborate to create illustrative examples that describe a feature’s intended behavior, usually in Gherkin. 
+
+Examples, also known as scenarios, serve as living documentation of the system’s requirements. Once the examples are defined, the team moves on to writing and automating them. This involves associating the Gherkin steps with test code (step definitions) that can be executed against the product. By converting examples into automated tests, everyone gains immediate visibility into whether the system behaves as expected.
+
+Next comes the implementation and continuous feedback loop. Developers write the application code necessary to make the failing BDD tests pass. After the new or modified features are implemented, the automated BDD scenarios run to validate correctness. 
+
+If tests fail, the team refines the code or clarifies the requirements, ensuring alignment with the expected behavior. As development progresses, the BDD scenarios remain a source of truth, continuously tested to confirm that the software still meets its defined requirements. 
+
+Over time, as features evolve, these scenarios can be updated or added to, maintaining clear documentation and preventing regressions. This cycle of discovery, specification, and validation drives consistent collaboration and results in a product that closely matches the user’s and stakeholders’ desired outcomes.
+
+### The Three Amigos
+Within the context of BDD, the “three amigos” (three friends) is a practice that involves three key roles: 
+
+- the business or product owner: representing requirements and business value
+- the developer: responsible for implementing the solution)
+- the tester or quality assurance specialist: (ensuring quality and correct functionality). 
+
+This trio meets to discuss, refine, and confirm the acceptance criteria of a user story or feature. By bringing these perspectives together early and regularly, the team aims to arrive at a clear, shared understanding of what needs to be built and why it matters.
+
+The primary benefit of this approach is its emphasis on preventing misunderstandings and defects before coding begins. Teams reduce costly rework by catching ambiguities and potential pitfalls early. The result is not only more robust software but also a more cohesive team that consistently delivers features that meet stakeholders’ expectations.
+
+### BDD in Agile
+Behavior-Driven Development (BDD) aligns with the values of Agile. After all, Agile is an iterative, incremental approach to software development that emphasizes collaboration, customer feedback, and rapid delivery of valuable software.
+
+BDD fits neatly into Agile sprints by guiding how user stories are discovered, refined, and validated. During backlog refinement or sprint planning sessions, teams may use the “three amigos” model to uncover hidden assumptions and clarify expected behavior.
+
+The automated tests derived from BDD scenarios provide continuous feedback throughout the Agile development cycle. Each time code is integrated, these tests run automatically, confirming whether the system continues to behave according to the established specifications.
+
+### BDD: what, not how
+To practice BDD, we must first write a specification that describes the behavior of the system. We do this by asking questions such as: “how should the system respond when a user does X?” or “does X follow the user’s expectations?” This puts the focus on the problem we are working on without getting mired in implementation details. We think about what the system does, rather than how it does it.
+
+We really don’t care how the system looks at this stage, if it has round or square buttons, or even what devices it runs on. Thus, we decouple the problem we want to solve from the technical details. The specification presents the case in a clear and concise form, as shown in the example below:
+
+```gherkin
+Scenario: Blog Search
+    Given I visit the blog page
+    When I search for “BDD”
+    Then I get posts related to BDD
+```
+
+The example is written in Gherkin, a language used by frameworks like Cucumber to define test cases in the BDD-style. Under the hood, the scenario drives a series of automated tests that ensure that the specification is followed.
+
+BDD allows us to interweave tests, analysis, and design, so they feed into each other, creating a feedback loop that guides development and enables us to track our progress.
+
+### BDD is not UI testing
+Inevitably, as an idea becomes popular, some of the important nuances get lost. One of the biggest misconceptions about BDD is that it is a synonym for UI testing.
+
+Take this example:
+
+```gherkin
+Scenario: user logs in to application
+    Given authorized user “John”
+    When I enter “John” in the username field
+    And I enter “sekret1” in the password field
+    And I click the login button
+    Then the homepage should open
+```
+
+This Gherkin scenario has several problems. For one thing, it’s too focused on the UI, making it brittle and too tied to the implementation — if any of the field names change, the test breaks.
+
+Another problem is that the logic of the test is limiting because it forces developers to follow a recipe. They need to implement classic username/password authentication even when better authentication mechanisms such as fingerprints or face recognition are available. Scenarios that are too detailed make the lives of developers harder because they hide the problem to solve under a long list of steps to follow.
+
+A better version of the scenario is shown below. In the example, we establish the specification (what the system should do) without going into details (how it should do it). Developers are free from the shackles of following a predetermined solution and are free to innovate.
+
+```gherkin
+Scenario: user logs into application
+    Given authorized user “John”
+    When “John” logs in correctly
+    Then “John” can access their items
+```
+
+### BDD works at every level
+Another big misconception about BDD is that it does not work for integration and unit testing. The reason for this is that Gherkin introduced an additional layer of abstraction which has led people to believe that BDD is synonymous with end-to-end testing. While BDD is usually paired with [acceptance tests](https://semaphore.io/blog/the-benefits-of-acceptance-testing), nothing is preventing us from using it at any level of the testing pyramid.
+
+To see how that BDD can be used at every level, here’s a unit test written in Gherkin:
+
+```gherkin
+Feature: Sum a Pair
+  It sums a pair of numbers
+
+  Scenario: adding numbers
+    Given a 1
+    When add a 2
+    Then the sum is 3
+```
+
+The example is so simple that you could even throw away Gherkin and write the test directly in any framework supporting behavior-driven DSLs such as Jest, as shown here:
+
+```javascript
+import { sum } from './maths';
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+Thinking that BDD only works on high-level tests leads to the inverted test pyramid (also known as the ice-cream cone). While in some cases, the inverted pyramid is an acceptable solution, more often, it only leads to hard-to-maintain, complex test suites that run very slowly.
+
+<ImageLightbox image={invertedTestPyramid} alt="Inverted test pyramid" />
+
+### Going even faster
+If you look at the remaining phases listed in the Waterfall diagram, which all need to happen regardless of the methodology, you may wonder if the same feedback loop minimization can be applied to them. The answer is, of course, yes. However, such loops are of a scope that is broader than just design and development, and they involve people working across very different fields, which means that they are out of the scope of this article. However, I will mention them briefly.
+
+**Lean Startup** would be the closest concept that brings together requirement gathering, feature development, and marketing as a way to close the loop on learning what a startup needs to build. Of course, the process goes somewhat differently in enterprises, although they are learning to apply lean startup principles in many projects as well.
+
+<ImageLightbox image={bdd09} alt="Continuous Delivery feedback loop" />
+
+Merging BDD with deployment and operations brings us to the broad concept of continuous delivery. The most important processes are continuous integration (CI) and continuous deployment, which you can easily configure for any project on Semaphore.
+
+### Conclusion
+Behavior-Driven Development evolved from optimization of various phases in the software development process. We can produce better software by analyzing, testing, coding, and designing our system in one short feedback loop, which helps us avoid mistakes and wasteful work.
+
+It is a common misconception that TDD is about testing and that BDD is just another way of approaching software testing, since it has its origins in TDD. This is not the case, although tests are a nice byproduct. It is a holistic approach to software development, derived from one simple idea: the desire to optimize the feedback loops in our work.
+
+BDD is a powerful tool for effective software development, one that takes time to learn and apply well. It helps you write tests that add value, have meaning, and help you in your designs. As long as you stay focused on the ‘what’ and avoid the ‘how’, you’ll be fine.
