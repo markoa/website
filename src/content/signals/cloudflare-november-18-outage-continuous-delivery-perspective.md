@@ -2,7 +2,7 @@
 title: "Cloudflare's November 18 Outage – A Continuous Delivery Perspective"
 pubDate: 2025-11-27 12:26Z
 type: "article"
-published: false
+published: true
 ---
 
 On November 18th, 2025, Cloudflare had what they describe as their worst outage since 2019.
