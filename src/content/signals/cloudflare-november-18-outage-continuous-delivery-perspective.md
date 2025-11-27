@@ -5,6 +5,7 @@ pubDate: 2025-11-27 12:26Z
 type: "article"
 published: true
 hackerNewsPostId: "46068733"
+xPostId: "1994032219846004781"
 ---
 
 On November 18th, 2025, Cloudflare had what they describe as their worst outage since 2019.
