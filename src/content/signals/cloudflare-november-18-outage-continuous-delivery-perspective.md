@@ -1,8 +1,10 @@
 ---
 title: "Cloudflare's November 18 Outage – A Continuous Delivery Perspective"
+description: "Cloudflare's worst outage since 2019 is a change management story and exactly what Continuous Delivery is supposed to make safe."
 pubDate: 2025-11-27 12:26Z
 type: "article"
 published: true
+hackerNewsPostId: "46068733"
 ---
 
 On November 18th, 2025, Cloudflare had what they describe as their worst outage since 2019.
