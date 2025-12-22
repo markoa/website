@@ -5,7 +5,7 @@ type: "article"
 published: true
 ---
 
-Darko Fabijan and I are starting a new company called [SuperPlane](https://superplane.com).
+Darko Fabijan and I started a new company called [SuperPlane](https://superplane.com).
 
 The best engineers are creating and reviewing an order of magnitude more code with AI. But the way they manage and operate their production systems is still manual and fragile.
 
