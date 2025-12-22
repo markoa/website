@@ -3,6 +3,7 @@ title: "Starting SuperPlane"
 pubDate: 2025-12-22 08:47Z
 type: "article"
 published: true
+linkedinPostId: "markoa_senior-software-engineer-activity-7408800345272913920-NAWd"
 ---
 
 Darko Fabijan and I started a new company called [SuperPlane](https://superplane.com).
