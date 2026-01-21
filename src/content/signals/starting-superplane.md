@@ -12,4 +12,4 @@ The best engineers are creating and reviewing an order of magnitude more code wi
 
 We think there's a better way to do DevOps in the age of AI. It's our most ambitious project to date, and we'll share more as soon as we have something to show.
 
-We're [hiring senior engineers](https://jobs.ashbyhq.com/superplane/78ea01a7-ecde-4d4f-8dcd-0ddebc4f7f95). If you're into building developer tools and looking to do career-defining work, let's talk.
+We're [hiring engineers](https://superplane.com/careers). If you're into building developer tools and looking to do career-defining work, let's talk.

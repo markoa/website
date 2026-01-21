@@ -7,7 +7,7 @@ published: true
 
 In the DevOps Paradox episode _[2026 — The Year of Discovery](https://www.devopsparadox.com/episodes/2026-the-year-of-discovery-332/)_, Viktor and Darin talk about how software work is changing, but the bottlenecks aren’t where people think.
 
-A few quotes are basically a version of why we started SuperPlane. My comments below.
+A few quotes are basically a version of why we [started SuperPlane](/signals/starting-superplane). My comments below.
 
 > You cannot just give developers, here’s AI. Everything else stays the same… you need to change the whole assembly line.
 
