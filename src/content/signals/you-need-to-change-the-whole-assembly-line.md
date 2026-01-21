@@ -3,6 +3,9 @@ title: "You Need To Change The Whole Assembly Line"
 pubDate: 2026-01-21 10:55Z
 type: "article"
 published: true
+xPostId: "2013949599086494062"
+blueskyPostId: "3mcwo7tqqhc2b"
+linkedinPostId: "markoa_dop-332-2026-the-year-of-discovery-activity-7419722177660375040-DnWL"
 ---
 
 In the DevOps Paradox episode _[2026 — The Year of Discovery](https://www.devopsparadox.com/episodes/2026-the-year-of-discovery-332/)_, Viktor and Darin talk about how software work is changing, but the bottlenecks aren’t where people think.
