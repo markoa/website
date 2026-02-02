@@ -4,6 +4,7 @@ pubDate: 2026-02-02 08:33Z
 type: "article"
 published: true
 xPostId: "2018089945055785228"
+blueskyPostId: "3mdugy5qabc2v"
 ---
 
 Engineering, Product, and Design used to be separate skills, but in the age of AI agents, they are like video game skills. You can clear the early levels by maxing one, but you won’t progress if the other two are at zero.
@@ -16,4 +17,4 @@ Two examples from the SuperPlane team:
 
 [Petar](https://github.com/ropsii) is a UI/UX Designer. He's creating the UI/UX for the app and implementing behaviors that he wants to see in the app as a full-fledged frontend developer. Since picking up Cursor, he has not opened Figma.
 
-AI makes leveling up universally available, and it raises the bar for what's considered good enough. Depth still matters, but range is how you stay effective.
+The best thing about AI is that it makes leveling up universally available. It's fun to see how people are using it to evolve and do more than they ever thought possible.
