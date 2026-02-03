@@ -5,6 +5,7 @@ type: "article"
 published: true
 xPostId: "2018089945055785228"
 blueskyPostId: "3mdugy5qabc2v"
+linkedinPostId: "markoa_engineering-product-and-design-are-now-activity-7424062827239309313-LRpD"
 ---
 
 Engineering, Product, and Design used to be separate skills, but in the age of AI agents, they are like video game skills. You can clear the early levels by maxing one, but you won’t progress if the other two are at zero.
