@@ -4,6 +4,9 @@ pubDate: 2026-02-03 10:50Z
 type: "link"
 url: "https://blog.mikeswanson.com/backseat-software/"
 published: true
+xPostId: "2018647854882165128"
+blueskyPostId: "3mdxq3fbm3c2j"
+linkedinPostId: "markoa_most-software-today-behaves-like-a-backseat-activity-7424425172935303168-eL8y"
 ---
 
 A historical perspective on the evolution of software by Mike Swanson:
