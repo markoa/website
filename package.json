@@ -16,7 +16,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
-    "astro": "^5.17.1",
+    "astro": "^5.17.3",
     "markdown-it": "^14.1.0",
     "marked": "^15.0.3",
     "sanitize-html": "^2.14.0",
