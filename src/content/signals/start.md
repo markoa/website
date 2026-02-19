@@ -21,3 +21,5 @@ So here's what this space is going to be: a place for notes, quotes, pretty imag
 Think of this as a quiet corner of the internet where the wifi is decent and the algorithms can't find us. No pop-ups, no ads, no growth hacking – just some notes from someone who believes the internet works best when people have their own spaces to think out loud and connect with others.
 
 Welcome to my corner.
+
+Edit: After a while I imported some posts I originally wrote for the Rendered Text, Semaphore, and Operately blogs. The [archives](/signals/archive) now go back to 2013.
