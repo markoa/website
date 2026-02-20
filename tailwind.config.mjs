@@ -20,6 +20,32 @@ export default {
             "h1, h2, h3, h4, h5, h6": {
               fontFamily: "Lato, ui-sans-serif, system-ui",
             },
+            // Normalized heading scale (article title is text-3xl = 1.875rem; keep hierarchy clear)
+            h1: {
+              fontSize: "1.75rem",
+              lineHeight: "1.3",
+              fontWeight: "700",
+            },
+            h2: {
+              fontSize: "1.375rem",
+              lineHeight: "1.35",
+              fontWeight: "600",
+            },
+            h3: {
+              fontSize: "1.25rem",
+              lineHeight: "1.4",
+              fontWeight: "600",
+            },
+            h4: {
+              fontSize: "1.125rem",
+              lineHeight: "1.45",
+              fontWeight: "600",
+            },
+            "h5, h6": {
+              fontSize: "1rem",
+              lineHeight: "1.5",
+              fontWeight: "600",
+            },
             p: {
               fontFamily: "PT Serif, ui-serif, Georgia",
             },
