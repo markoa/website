@@ -4,9 +4,11 @@ description: "AI is an amplifier of what you already have. The real gains come f
 pubDate: 2026-02-27 12:00Z
 type: "article"
 published: true
+xPostId: "2027346016177897960"
+linkedinPostId: "markoa_if-youre-using-ai-by-writing-prompts-you-activity-7433109863486005248-YxPn"
 ---
 
-If you're using AI by writing prompts, you're missing 80% of the value.
+If you're still using AI by writing prompts, you're missing 80% of the value.
 
 The real gains are made when you give models access to your context: your docs, your tickets, your code, your metrics, and your decisions.
 
