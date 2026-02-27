@@ -14,9 +14,9 @@ Which leads to a fundamental truth: **AI is an amplifier of what you already hav
 
 That's the good news and the bad news.
 
-If your knowledge is stale, AI will confidently repeat outdated information.
+If your company playbook is stale, AI will confidently repeat outdated information.
 
-If your decisions aren't captured, AI will "align" people around fiction.
+If your decisions aren't recorded, AI will "align" people around fiction.
 
 If your engineering team isn't doing continuous delivery with fast CI, frequent deploys, and easy rollbacks, AI will generate more code than you can responsibly move into production.
 
