@@ -3,6 +3,8 @@ title: "Product Friction Starts As Unclear State"
 pubDate: 2026-03-27 12:37Z
 type: "article"
 published: true
+linkedinPostId: "markoa_product-friction-starts-as-unclear-state-activity-7443277477554081792-YXiC"
+xPostId: "2037512870284464195"
 ---
 
 Looking through this week’s issues at
