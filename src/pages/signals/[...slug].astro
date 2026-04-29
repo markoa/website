@@ -20,6 +20,6 @@ if (post.render) {
 }
 ---
 
-<BlogLayout frontmatter={post.data}>
+<BlogLayout frontmatter={post.data} slug={post.slug}>
   {Content && <Content />}
 </BlogLayout>

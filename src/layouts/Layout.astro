@@ -5,11 +5,25 @@ import Posthog from "../components/posthog.astro";
 import socialCard from "../assets/social-card.jpeg";
 import socialCardSquare from "../assets/social-card-square.jpeg";
 
+const toAbsoluteUrl = (url: string | undefined) =>
+  url ? new URL(url, Astro.site).toString() : undefined;
+
 const socialCardUrl = new URL(socialCard.src, Astro.site).toString();
 const socialCardSquareUrl = new URL(
   socialCardSquare.src,
   Astro.site
 ).toString();
+const ogImageUrl =
+  toAbsoluteUrl(Astro.props.ogImage) ??
+  toAbsoluteUrl(Astro.props.photo) ??
+  socialCardUrl;
+const twitterImageUrl =
+  toAbsoluteUrl(Astro.props.twitterImage) ??
+  toAbsoluteUrl(Astro.props.photo) ??
+  (Astro.props.ogImage ? ogImageUrl : socialCardSquareUrl);
+const twitterCard =
+  Astro.props.twitterCard ??
+  (Astro.props.photo || Astro.props.ogImage ? "summary_large_image" : "summary");
 ---
 
 <!doctype html>
@@ -39,22 +53,11 @@ const socialCardSquareUrl = new URL(
         <meta property="og:description" content={Astro.props.description} />
       )
     }
-    <meta property="og:image" content={socialCardUrl} />
+    <meta property="og:image" content={ogImageUrl} />
 
     <!-- Twitter -->
-    {
-      Astro.props.photo ? (
-        <>
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:image" content={Astro.props.photo} />
-        </>
-      ) : (
-        <>
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:image" content={socialCardSquareUrl} />
-        </>
-      )
-    }
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:image" content={twitterImageUrl} />
     <meta name="twitter:site" content="@markoa" />
     <meta name="twitter:title" content={Astro.props.title} />
     {

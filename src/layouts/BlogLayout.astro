@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { formatDate } from "../utils/date";
 
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 
 const icons = {
   xTwitter: icon(faXTwitter).html[0],
@@ -31,6 +31,14 @@ const getISODate = (timestamp: string | Date) => {
 const canonicalURL =
   frontmatter.canonicalUrl ??
   new URL(Astro.url.pathname, Astro.site).toString();
+const photo =
+  frontmatter.type === "photo" && frontmatter.image
+    ? typeof frontmatter.image === "string"
+      ? frontmatter.image
+      : new URL(frontmatter.image.src, Astro.site).toString()
+    : undefined;
+const ogImage =
+  frontmatter.type === "photo" ? photo : slug ? `/signals/${slug}.png` : undefined;
 ---
 
 <Layout
@@ -38,12 +46,8 @@ const canonicalURL =
   description={frontmatter.description}
   canonicalURL={canonicalURL}
   ogType="article"
-  {...frontmatter.type === "photo" && {
-    photo:
-      typeof frontmatter.image === "string"
-        ? frontmatter.image
-        : new URL(frontmatter.image.src, Astro.site).toString(),
-  }}
+  photo={photo}
+  ogImage={ogImage}
 >
   <div class="flex dark:bg-dark-base min-h-screen">
     <MenuButton />
