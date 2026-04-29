@@ -38,8 +38,8 @@ function createOpenGraphSvg(post: SignalPost) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="#454B5A"/>
-  <text x="96" y="172" font-family="Lato, Arial, sans-serif" font-size="28" fill="#d7dbe3">${escapeXml(date)}</text>
-  <text x="96" y="245" font-family="Lato, Arial, sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff">
+  <text x="96" y="150" font-family="Lato, Arial, sans-serif" font-size="26" fill="#d7dbe3">${escapeXml(date)}</text>
+  <text x="96" y="220" font-family="Lato, Arial, sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff">
     ${titleLines
       .map(
         (line, index) =>
@@ -48,9 +48,9 @@ function createOpenGraphSvg(post: SignalPost) {
       .join("")}
   </text>
   <text x="96" y="515" font-family="Lato, Arial, sans-serif" font-size="16" font-weight="300" fill="#d7dbe3" letter-spacing="3">AUTHOR</text>
-  <text x="96" y="555" font-family="Lato, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">Marko Anastasov</text>
+  <text x="96" y="555" font-family="Lato, Arial, sans-serif" font-size="26" font-weight="600" fill="#ffffff">Marko Anastasov</text>
   <text x="1104" y="515" text-anchor="end" font-family="Lato, Arial, sans-serif" font-size="16" font-weight="300" fill="#d7dbe3" letter-spacing="3">SOURCE</text>
-  <text x="1104" y="555" text-anchor="end" font-family="Lato, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">markoanastasov.com/signals</text>
+  <text x="1104" y="555" text-anchor="end" font-family="Lato, Arial, sans-serif" font-size="24" font-weight="400" fill="#e5e7eb">markoanastasov.com/signals</text>
 </svg>`;
 }
 
