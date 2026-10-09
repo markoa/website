@@ -3,6 +3,9 @@ title: "Small Batches Still Matter When Agents Write The Code"
 pubDate: 2026-10-09 09:22Z
 type: "article"
 published: true
+xPostId: "2108536707159073087"
+hackerNewsPostId: "50018223"
+linkedinPostId: "markoa_spoke-with-a-team-this-week-who-told-me-they-share-7514258002309169152-C0OC"
 ---
 
 Spoke with a team this week who told me they try to cap pull requests at 500 lines and keep failing.

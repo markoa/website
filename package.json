@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "blog:new": "node ./scripts/new-article.mjs"
+    "blog:new": "node ./scripts/new-article.mjs",
+    "blog:links": "node ./scripts/update-post-links.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
