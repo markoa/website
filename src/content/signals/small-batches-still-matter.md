@@ -1,5 +1,5 @@
 ---
-title: "Small Batches Still Matter"
+title: "Small Batches Still Matter When Agents Write The Code"
 pubDate: 2026-10-09 09:22Z
 type: "article"
 published: true
