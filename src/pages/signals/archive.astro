@@ -60,7 +60,7 @@ const getISODate = (timestamp: string | Date) => {
                   {postsByYear[year].map((post) => (
                     <li class="space-y-1">
                       <a
-                        href={`/signals/${post.slug}`}
+                        href={`/signals/${post.id}`}
                         class="block text-base text-gray-900 dark:text-gray-50 hover:text-gray-600 dark:hover:text-gray-200"
                       >
                         {post.data.title}

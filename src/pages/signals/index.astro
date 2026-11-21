@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogSidebar from "../../components/BlogSidebar.astro";
 import MenuButton from "../../components/MenuButton.astro";
@@ -38,11 +38,8 @@ const icons = {
 // Render all posts' content
 const renderedPosts = await Promise.all(
   postsThisYear.map(async (post) => {
-    if (post.render) {
-      const { Content } = await post.render();
-      return { ...post, Content } as any; // Type assertion to fix lint errors
-    }
-    return post as any; // Type assertion to fix lint errors
+    const { Content } = await render(post);
+    return { ...post, Content };
   })
 );
 ---
@@ -86,7 +83,7 @@ const renderedPosts = await Promise.all(
                       </a>
                     ) : (
                       <a
-                        href={`/signals/${post.slug}`}
+                        href={`/signals/${post.id}`}
                         class="hover:text-gray-600 dark:hover:text-gray-300"
                       >
                         {post.data.title}
@@ -96,11 +93,11 @@ const renderedPosts = await Promise.all(
                 )}
 
                 <div class="prose prose-lg prose-stone prose-quoteless dark:prose-invert marker:text-gray-400 dark:marker:text-gray-500 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-500 prose-blockquote:border-gray-400 dark:prose-blockquote:border-gray-500 ">
-                  {post.Content && <post.Content />}
+                  <post.Content />
                 </div>
 
                 <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 font-sans">
-                  <a href={`/signals/${post.slug}`}>
+                  <a href={`/signals/${post.id}`}>
                     {formatDate(post.data.pubDate)}
                   </a>
                   <div class="flex items-center gap-3">

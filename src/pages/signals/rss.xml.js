@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
-import { getContainerRenderer as getMDXRenderer } from "@astrojs/mdx";
-import { getCollection } from "astro:content";
+import { getContainerRenderer as getMDXRenderer } from "@astrojs/mdx/container-renderer";
+import { getCollection, render } from "astro:content";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { loadRenderers } from "astro:container";
 import { transform, walk } from "ultrahtml";
@@ -34,7 +34,7 @@ export async function GET(context) {
   for (const post of sortedSignals) {
     try {
       // Get the content component
-      const { Content } = await post.render();
+      const { Content } = await render(post);
 
       // Render content to string
       const rawContent = await container.renderToString(Content);
@@ -79,7 +79,7 @@ export async function GET(context) {
         ]
       );
 
-      let feedLink = `/signals/${post.slug}/`;
+      let feedLink = `/signals/${post.id}/`;
       let feedTitle = post.data.title;
 
       // For link posts, use the external URL as the feed link
@@ -102,7 +102,7 @@ export async function GET(context) {
         title: post.data.title,
         description: post.data.description || "",
         pubDate: post.data.pubDate,
-        link: `/signals/${post.slug}/`,
+        link: `/signals/${post.id}/`,
         content: post.data.description || "",
       });
     }

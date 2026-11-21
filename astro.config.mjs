@@ -1,12 +1,13 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://markoanastasov.com",
+  compressHTML: true,
   markdown: {
+    processor: unified(),
     syntaxHighlight: "shiki",
     shikiConfig: {
       themes: {
@@ -15,10 +16,5 @@ export default defineConfig({
       },
     },
   },
-  integrations: [
-    tailwind(),
-    mdx({
-      extendMarkdownConfig: true,
-    }),
-  ],
+  integrations: [mdx()],
 });

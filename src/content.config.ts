@@ -1,8 +1,9 @@
-import { defineCollection, z } from "astro:content";
-import { image } from "astro:assets";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 const signals = defineCollection({
-  type: "content",
+  loader: glob({ base: "./src/content/signals", pattern: "**/[^_]*.{md,mdx}" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -13,7 +14,7 @@ const signals = defineCollection({
       image: z
         .union([
           image(), // for local images
-          z.string().url(), // for external URLs
+          z.url(), // for external URLs
         ])
         .optional(), // for photo type posts
       published: z.boolean().default(false),
@@ -22,7 +23,7 @@ const signals = defineCollection({
       linkedinPostId: z.string().optional(), // ID of the post on LinkedIn
       zoraPostId: z.string().optional(), // ID of the post on Zora.co
       hackerNewsPostId: z.string().optional(), // Item ID of the thread on Hacker News
-      canonicalUrl: z.string().url().optional(), // Original canonical URL if syndicated
+      canonicalUrl: z.url().optional(), // Original canonical URL if syndicated
     }),
 });
 

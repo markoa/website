@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
@@ -7,19 +7,15 @@ export async function getStaticPaths() {
     return import.meta.env.PROD ? data.published : true;
   });
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-let Content;
-if (post.render) {
-  const rendered = await post.render();
-  Content = rendered.Content;
-}
+const { Content } = await render(post);
 ---
 
-<BlogLayout frontmatter={post.data} slug={post.slug}>
-  {Content && <Content />}
+<BlogLayout frontmatter={post.data} slug={post.id}>
+  <Content />
 </BlogLayout>
