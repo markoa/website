@@ -1,5 +1,6 @@
 ---
 import "../styles/tailwind.css";
+import "../styles/site.css";
 import "../styles/shiki.css";
 import "../styles/prose.css";
 import Posthog from "../components/posthog.astro";
@@ -25,14 +26,27 @@ const twitterImageUrl =
 const twitterCard =
   Astro.props.twitterCard ??
   (Astro.props.photo || Astro.props.ogImage ? "summary_large_image" : "summary");
+const ground = Astro.props.ground === "chassis" ? "chassis" : "panel";
+const themeColorLight = ground === "chassis" ? "#E6E6E6" : "#FFFFFF";
+const themeColorDark = ground === "chassis" ? "#0E0E0E" : "#2B2B2B";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class={ground === "chassis" ? "bg-chassis" : "bg-panel"}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta
+      name="theme-color"
+      content={themeColorLight}
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content={themeColorDark}
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
     {
@@ -73,16 +87,21 @@ const twitterCard =
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;1,400&display=swap"
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;1,400&display=swap"
     />
 
     <Posthog />
   </head>
-  <body class="min-h-screen bg-light-base dark:bg-dark-base">
+  <body
+    class:list={[
+      "min-h-screen font-sans text-ink",
+      ground === "chassis" ? "bg-chassis" : "bg-panel",
+    ]}
+  >
     <slot />
   </body>
 </html>

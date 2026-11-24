@@ -1,31 +1,69 @@
-/* Normalized prose heading scale (overrides @tailwindcss/typography for prose and prose-lg) */
+.prose {
+  --tw-prose-body: var(--ink);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-lead: var(--label);
+  --tw-prose-links: var(--ink);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-counters: var(--label);
+  --tw-prose-bullets: var(--label);
+  --tw-prose-hr: var(--edge);
+  --tw-prose-quotes: var(--ink);
+  --tw-prose-quote-borders: var(--orange);
+  --tw-prose-captions: var(--label);
+  --tw-prose-code: var(--ink);
+  --tw-prose-pre-code: #f2f2f2;
+  --tw-prose-pre-bg: var(--glass);
+  --tw-prose-th-borders: var(--edge);
+  --tw-prose-td-borders: var(--edge);
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+.prose-lg {
+  font-size: 1.125rem;
+  line-height: 2rem;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose-lg h1,
+.prose-lg h2,
+.prose-lg h3,
+.prose-lg h4,
+.prose-lg h5,
+.prose-lg h6 {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+}
 
 .prose h1,
 .prose-lg h1 {
   font-size: 1.75rem;
   line-height: 1.3;
-  font-weight: 700;
 }
 
 .prose h2,
 .prose-lg h2 {
   font-size: 1.375rem;
   line-height: 1.35;
-  font-weight: 600;
 }
 
 .prose h3,
 .prose-lg h3 {
   font-size: 1.25rem;
   line-height: 1.4;
-  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .prose h4,
 .prose-lg h4 {
   font-size: 1.125rem;
   line-height: 1.45;
-  font-weight: 600;
 }
 
 .prose h5,
@@ -34,5 +72,64 @@
 .prose-lg h6 {
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.prose p,
+.prose li,
+.prose blockquote {
+  font-family: var(--sans);
+}
+
+.prose strong {
   font-weight: 600;
+  color: var(--ink);
+}
+
+.prose a,
+a.ink-link {
+  color: var(--ink);
+  font-weight: 400;
+  text-decoration-line: underline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.prose a:hover,
+a.ink-link:hover {
+  text-decoration-thickness: 3px;
+}
+
+.prose blockquote {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink);
+  border-left-width: 2px;
+  border-left-color: var(--orange);
+  padding-left: 24px;
+  padding-inline-start: 24px;
+}
+
+.prose li::marker {
+  color: var(--label);
+}
+
+.prose hr {
+  border-color: var(--edge);
+}
+
+.prose :not(pre) > code {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 400;
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: none;
 }

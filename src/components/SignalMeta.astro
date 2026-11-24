@@ -1,0 +1,92 @@
+---
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import {
+  faBluesky,
+  faEthereum,
+  faHackerNews,
+  faLinkedin,
+  faXTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { formatDate } from "../utils/date";
+
+const {
+  pubDate,
+  permalink,
+  xPostId,
+  blueskyPostId,
+  linkedinPostId,
+  hackerNewsPostId,
+  zoraPostId,
+} = Astro.props;
+
+const icons = {
+  x: icon(faXTwitter).html[0],
+  bluesky: icon(faBluesky).html[0],
+  linkedin: icon(faLinkedin).html[0],
+  hackerNews: icon(faHackerNews).html[0],
+  zora: icon(faEthereum).html[0],
+};
+
+const shares = [
+  xPostId && {
+    href: `https://x.com/markoa/status/${xPostId}`,
+    icon: icons.x,
+    label: "Interact on X",
+  },
+  blueskyPostId && {
+    href: `https://bsky.app/profile/markoanastasov.bsky.social/post/${blueskyPostId}`,
+    icon: icons.bluesky,
+    label: "Interact on Bluesky",
+  },
+  hackerNewsPostId && {
+    href: `https://news.ycombinator.com/item?id=${hackerNewsPostId}`,
+    icon: icons.hackerNews,
+    label: "Interact on Hacker News",
+  },
+  linkedinPostId && {
+    href: `https://www.linkedin.com/posts/${linkedinPostId}/`,
+    icon: icons.linkedin,
+    label: "Interact on LinkedIn",
+  },
+  zoraPostId && {
+    href: `https://zora.co/${zoraPostId}`,
+    icon: icons.zora,
+    label: "Interact on Zora",
+  },
+].filter(Boolean);
+
+const isoDate = new Date(pubDate).toISOString();
+const label = formatDate(pubDate);
+---
+
+<div class="flex items-center justify-between font-mono text-[13px] leading-5 text-label">
+  {
+    permalink ? (
+      <a href={permalink} class="quiet">
+        {label}
+      </a>
+    ) : (
+      <time datetime={isoDate}>{label}</time>
+    )
+  }
+  {
+    shares.length > 0 && (
+      <div class="flex items-center gap-3">
+        <span>interact on</span>
+        {shares.map((share) => (
+          <a
+            href={share.href}
+            class="icon-link"
+            aria-label={share.label}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="inline-block w-3 h-3 [&>svg]:h-3 [&>svg]:w-3">
+              <Fragment set:html={share.icon} />
+            </span>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</div>

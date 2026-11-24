@@ -1,15 +1,26 @@
 .astro-code {
-  color: inherit;
+  background-color: var(--glass) !important;
+  color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px 24px;
+  color-scheme: dark;
+  overflow-x: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  .astro-code.astro-code-themes {
-    background-color: var(--shiki-dark-bg) !important;
-    color: var(--shiki-dark) !important;
-  }
+.astro-code,
+.astro-code code {
+  font-family: var(--mono) !important;
+  font-size: 15px !important;
+  line-height: 24px !important;
+  font-weight: 400;
+}
 
-  .astro-code.astro-code-themes .line,
-  .astro-code.astro-code-themes .line span {
-    color: var(--shiki-dark) !important;
-  }
+.astro-code span {
+  font-family: inherit !important;
+  font-style: normal !important;
+}
+
+.astro-code span[style*="#FF4F00"],
+.astro-code span[style*="#ff4f00"] {
+  font-weight: 500;
 }

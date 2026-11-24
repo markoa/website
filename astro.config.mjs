@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
+import { codeTheme } from "./src/styles/code-theme.js";
 
 export default defineConfig({
   site: "https://markoanastasov.com",
@@ -10,10 +11,7 @@ export default defineConfig({
     processor: unified(),
     syntaxHighlight: "shiki",
     shikiConfig: {
-      themes: {
-        light: "github-light",
-        dark: "github-dark",
-      },
+      theme: codeTheme,
     },
   },
   integrations: [mdx()],

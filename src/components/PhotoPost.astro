@@ -1,0 +1,18 @@
+---
+import ImageLightbox from "./ImageLightbox.astro";
+
+const { image, description } = Astro.props;
+---
+
+{
+  image && (
+    <>
+      <ImageLightbox image={image} alt={description || "Photo post"} />
+      {description && (
+        <p class="photo-caption">
+          <em>{description}</em>
+        </p>
+      )}
+    </>
+  )
+}

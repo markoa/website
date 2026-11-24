@@ -5,14 +5,14 @@ const { class: className } = Astro.props;
 <button
   id="menu-button"
   class:list={[
-    "lg:hidden fixed top-8 left-8 z-50 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors",
+    "lg:hidden fixed top-8 left-8 z-50 rounded-lg p-2 text-label transition-colors duration-100 ease-linear hover:bg-key",
     className,
   ]}
   aria-label="Toggle menu"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="w-5 h-5 text-gray-600 dark:text-gray-400"
+    class="h-5 w-5"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"

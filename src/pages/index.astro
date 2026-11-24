@@ -17,97 +17,70 @@ const icons = {
   github: icon(faGithub).html,
   rss: icon(faRss).html,
 };
+
+const links = [
+  { href: "/signals", label: "Blog", icon: icons.rss },
+  { href: "https://x.com/markoa", label: "@markoa", icon: icons.twitter, rel: "me" },
+  {
+    href: "https://bsky.app/profile/markoanastasov.bsky.social",
+    label: "Bluesky",
+    icon: icons.bluesky,
+    rel: "me",
+  },
+  {
+    href: "https://www.linkedin.com/in/markoa/",
+    label: "LinkedIn",
+    icon: icons.linkedin,
+    rel: "me",
+  },
+  { href: "https://github.com/markoa", label: "GitHub", icon: icons.github, rel: "me" },
+];
 ---
 
-<Layout title="Marko Anastasov">
-  <div
-    class="bg-gray-200 dark:bg-gray-900 min-h-screen flex items-center justify-center"
-  >
-    <div
-      class="bg-light-base dark:bg-gray-800 shadow-md rounded p-6 w-full max-w-xs"
-    >
+<Layout title="Marko Anastasov" ground="chassis">
+  <div class="flex min-h-screen items-center justify-center bg-chassis">
+    <div class="w-full max-w-xs rounded bg-panel p-6">
       <img
-        class="w-32 h-32 mx-auto rounded-full border-4 border-gray-200 dark:border-gray-700 mb-4"
+        class="mx-auto mb-4 h-32 w-32 rounded-full border-[3px] border-orange"
         src={avatar.src}
         alt="Profile Picture"
       />
-      <h1 class="text-center text-xl font-bold mb-4 dark:text-white">
+      <h1
+        class="mb-4 text-center text-xl font-bold leading-7 tracking-[-0.015em] text-ink"
+      >
         Marko Anastasov
       </h1>
-      <p class="text-center text-gray-800 dark:text-gray-300 mb-4">
+      <p class="mb-4 text-center text-base leading-6 text-ink">
         👋 Tech entrepreneur, open source builder. Cofounder of <a
-          href="https://superplane.com"
-          class="underline">SuperPlane</a
+          class="bio-link"
+          href="https://superplane.com">SuperPlane</a
         >,
-        <a href="https://semaphore.io" class="underline">Semaphore</a> and <a
-          href="https://operately.com"
-          class="underline">Operately</a
+        <a class="bio-link" href="https://semaphore.io">Semaphore</a> and <a
+          class="bio-link"
+          href="https://operately.com">Operately</a
         >.
       </p>
-      <p class="text-center text-gray-800 dark:text-gray-300 mb-4">
+      <p class="mb-4 text-center text-base leading-6 text-ink">
         🤝 I do business execution, product design, marketing, and engineering.
       </p>
-      <p class="text-center text-gray-800 dark:text-gray-300 mb-8">👨‍👩‍👧‍👦 Dad ×2</p>
+      <p class="mb-8 text-center text-base leading-6 text-ink">👨‍👩‍👧‍👦 Dad ×2</p>
       <ul class="space-y-4">
-        <li>
-          <a
-            href="/signals"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.rss} />
-            </span>
-            Blog
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://x.com/markoa"
-            rel="me"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.twitter} />
-            </span>
-            @markoa
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://bsky.app/profile/markoanastasov.bsky.social"
-            rel="me"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.bluesky} />
-            </span>
-            Bluesky
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.linkedin.com/in/markoa/"
-            rel="me"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.linkedin} />
-            </span>
-            LinkedIn
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/markoa"
-            rel="me"
-            class="flex items-center justify-center bg-sky-100 dark:bg-sky-900 text-sky-900 dark:text-sky-100 font-bold py-2 px-4 rounded w-full transition-all hover:bg-sky-600 hover:text-sky-50"
-          >
-            <span class="w-4 h-4 mr-2">
-              <Fragment set:html={icons.github} />
-            </span>
-            GitHub
-          </a>
-        </li>
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                rel={link.rel}
+                class="key flex w-full items-center justify-center gap-2 rounded px-4 py-2"
+              >
+                <span class="inline-flex h-4 w-4 [&>svg]:h-4 [&>svg]:w-4">
+                  <Fragment set:html={link.icon} />
+                </span>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>

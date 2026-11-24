@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { faSignal } from "@fortawesome/free-solid-svg-icons";
 import sharp from "sharp";
 
 type SignalPost = CollectionEntry<"signals">;
@@ -35,11 +36,16 @@ function createOpenGraphSvg(post: SignalPost) {
   const titleLineHeight = Math.round(titleFontSize * 1.18);
   const date = formatDate(post.data.pubDate);
 
+  const [iconWidth, iconHeight, , , iconPath] = faSignal.icon;
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#454B5A"/>
-  <text x="96" y="150" font-family="Lato, Arial, sans-serif" font-size="26" fill="#d7dbe3">${escapeXml(date)}</text>
-  <text x="96" y="220" font-family="Lato, Arial, sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff">
+  <rect width="1200" height="630" fill="#2B2B2B"/>
+  <svg x="96" y="128" width="22" height="22" viewBox="0 0 ${iconWidth} ${iconHeight}" aria-hidden="true">
+    <path fill="#FF4F00" d="${iconPath}"/>
+  </svg>
+  <text x="128" y="150" font-family="Arial, sans-serif" font-size="26" fill="#ABABAB">${escapeXml(date)}</text>
+  <text x="96" y="220" font-family="Arial, sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#F2F2F2">
     ${titleLines
       .map(
         (line, index) =>
@@ -47,10 +53,10 @@ function createOpenGraphSvg(post: SignalPost) {
       )
       .join("")}
   </text>
-  <text x="96" y="515" font-family="Lato, Arial, sans-serif" font-size="16" font-weight="300" fill="#d7dbe3" letter-spacing="3">AUTHOR</text>
-  <text x="96" y="555" font-family="Lato, Arial, sans-serif" font-size="26" font-weight="600" fill="#ffffff">Marko Anastasov</text>
-  <text x="1104" y="515" text-anchor="end" font-family="Lato, Arial, sans-serif" font-size="16" font-weight="300" fill="#d7dbe3" letter-spacing="3">SOURCE</text>
-  <text x="1104" y="555" text-anchor="end" font-family="Lato, Arial, sans-serif" font-size="24" font-weight="400" fill="#e5e7eb">markoanastasov.com/signals</text>
+  <text x="96" y="515" font-family="Arial, sans-serif" font-size="16" font-weight="300" fill="#ABABAB" letter-spacing="3">AUTHOR</text>
+  <text x="96" y="555" font-family="Arial, sans-serif" font-size="26" font-weight="600" fill="#F2F2F2">Marko Anastasov</text>
+  <text x="1104" y="515" text-anchor="end" font-family="Arial, sans-serif" font-size="16" font-weight="300" fill="#ABABAB" letter-spacing="3">SOURCE</text>
+  <text x="1104" y="555" text-anchor="end" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#ABABAB">markoanastasov.com/signals</text>
 </svg>`;
 }
 
